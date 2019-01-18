@@ -12,3 +12,27 @@
 #viewDiv div {
     height:inherit;
 }
+
+#filter-div{
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+}
+
+#cart{
+    border: 2px solid black;
+}
+
+#num-people-form{
+    padding-right:10px;
+}
+
+#cart-description{
+    height:2vh;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    background: lightgrey;
+}
+
+#cart-description p{
+    display: inline;
+}
