@@ -43,13 +43,13 @@ button {
 }
 
 #cart-description{
-    height:2vh;
     border-bottom: 1px solid black;
     border-top: 1px solid black;
     background: lightgrey;
 }
 
 #cart-description p{
+    padding-top:11px;
     display: inline;
 }
 
