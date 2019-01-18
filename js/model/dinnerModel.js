@@ -3,22 +3,22 @@ var DinnerModel = function() {
 
 	//TODO Lab 1 implement the data structure that will hold number of guest
 	// and selected dishes for the dinner menu
-  this.numberOfGuests = 0;
-  this.selectedDishes = [];
+  var numberOfGuests = 0;
+  var selectedDishes = [];
 
 	this.setNumberOfGuests = function(num) {
-		this.numberOfGuests = num;
+		numberOfGuests = num;
 	}
 
 	this.getNumberOfGuests = function() {
-		return this.numberOfGuests;
+		return numberOfGuests;
 	}
 
 	//Returns the dish that is on the menu for selected type
 	this.getSelectedDish = function(type) {
     var allSelDishes = [];
-    for(key in this.selectedDishes){
-      if(this.selectedDishes[key].type == type) {
+    for(key in selectedDishes){
+      if(selectedDishes[key].type == type) {
          allSelDishes.push(selectedDishes[key]);
       }
     }
@@ -27,15 +27,14 @@ var DinnerModel = function() {
 
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
-		return this.selectedDishes;
+		return selectedDishes;
 	}
 
 	//Returns all ingredients for all the dishes on the menu.
 	this.getAllIngredients = function() {
 		var allIngredients = [];
-    var selDishes = this.getFullMenu();
-    for(key in selDishes.ingredients){
-      var ingredient = selDishes.ingredients[key];
+    for(key in selectedDishes.ingredients){
+      var ingredient = selectedDishes.ingredients[key];
       // if(!allIngredients.includes(ingredient)) {
          allIngredients.push(ingredient);
       // }
@@ -57,22 +56,20 @@ var DinnerModel = function() {
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
     var addDish = this.getDish(id);
-    var selDishes = this.getFullMenu();
-
-    for(key in selDishes){
-      if (selDishes[key].type == addDish.type) {
-        this.removeDishFromMenu(selDishes[key].id);
+    for(key in selectedDishes){
+      if (selectedDishes[key].type == addDish.type) {
+        this.removeDishFromMenu(selectedDishes[key].id);
       }
     }
 
-    this.selectedDishes.push(addDish);
+    selectedDishes.push(addDish);
 	}
 
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
-    for(key in this.selectedDishes){
-      if (this.selectedDishes[key].id == id) {
-        delete this.selectedDishes[key];
+    for(key in selectedDishes){
+      if (selectedDishes[key].id == id) {
+        delete selectedDishes[key];
       }
     }
 	}

@@ -1,0 +1,10 @@
+#headerContainer {
+   padding: 3vh;
+   text-align:center;
+   background: lightgrey;
+   border-bottom: 1px solid grey;
+}
+
+#viewDiv {
+    height: 86.5vh;
+}
