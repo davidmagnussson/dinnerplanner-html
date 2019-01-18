@@ -8,3 +8,7 @@
 #viewDiv {
     height: 86.5vh;
 }
+
+#viewDiv div {
+    height:inherit;
+}
