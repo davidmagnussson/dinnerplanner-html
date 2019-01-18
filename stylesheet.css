@@ -43,8 +43,8 @@ button {
 }
 
 #cart-description{
-    border-bottom: 1px solid black;
-    border-top: 1px solid black;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
     background: lightgrey;
 }
 
@@ -83,4 +83,23 @@ button {
 
 #ingredientSummary {
     height: 7vh!important;
+}
+
+.food-image{
+    margin-top: 13px;
+    height: 20vh;
+    width: 20vh;
+    border: 2px solid black;
+}
+
+.food-image img{
+    height: 15vh;
+    width: 100%;
+}
+
+.food-image #food-name{
+    height: 4.5vh;
+    text-align: center;
+    background: lightgrey;
+    border-top: 2px solid black;
 }

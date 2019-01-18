@@ -21,7 +21,7 @@
         <div class="row">
 
           <div class="col-lg-3 col-md-3" id="cart">
-            <p>My Dinner</p>
+            <strong>My Dinner</strong><br/>
             <form id="num-people-form">
                 <div class="form-group row">
                     <label for="number-of-people" class="col-md-5 col-form-label">People</label>
@@ -35,19 +35,23 @@
                 </div>
             </div>
             <div id="menu-list">
+                <p class="text-right">SEK 0.00</p>
+                <div class="text-center">
+                    <button>Confirm Order</button>
+                </div>
             </div>
           </div>
 
           <div  class="col-lg-9 col-md-9 container-fluid" id="site-content">
               <div class="row form-inline">
                   <div style="height:15vh" class="col-md-12" id="filter-div">
-                      <p>FIND A DISH</p>
+                      <strong>FIND A DISH</strong>
                       <form class="row">
                           <div class="form-group col-md-4">
                             <input placeholder="Enter key words"/>
                           </div>
-                          <div class="form-group col-md-6" id="food-type">
-                            <select class="form-control">
+                          <div class="form-group col-md-6 row" id="food-type">
+                            <select class="form-control col-md-12">
                                 <option>All</option>
                                 <option>Main Course</option>
                                 <option>Side Dish</option>
@@ -60,8 +64,15 @@
                           </div>
                       </form>
                   </div>
-                  <div style="height:71.5vh" class="col-md-12" id="food-menu">
-
+                  <div class="col-md-12" id="food-menu">
+                    <div class="food-image">
+                        <div>
+                            <img src="images/meatballs.jpg"/>
+                        </div>
+                        <div id="food-name">
+                            <p>Meatballs</p>
+                        </div>
+                    </div>
                   </div>
               </div>
           </div>
