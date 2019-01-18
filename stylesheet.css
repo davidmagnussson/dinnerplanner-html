@@ -46,6 +46,10 @@ button {
     height: 30vh;
 }
 
+.restDiv {
+    min-height: 75vh;
+}
+
 /* Ingredient Box*/
 #ingredientBox {
     height: 75vh!important;
@@ -59,4 +63,15 @@ button {
 
 #ingredientSummary {
     height: 7vh!important;
+}
+
+
+#myDinner {
+    padding-top: 20px;
+    height: 10vh!important;
+    border-bottom: 1px solid #333;
+}
+
+#meals {
+    height: 40vh;
 }
