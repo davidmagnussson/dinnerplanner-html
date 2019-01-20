@@ -32,14 +32,17 @@ button {
 #filter-div{
     border-bottom: 2px solid black;
     border-top: 2px solid black;
+    height:15vh;
 }
 
 #cart{
-    border: 2px solid black;
+    border:2px solid black;
+    /*border-left:2px solid black;
+    border-top: 2px solid black;
+    border-right: 2px solid black;*/
 }
 
 #num-people-form{
-    padding-right:10px;
 }
 
 #cart-description{
@@ -86,7 +89,6 @@ button {
 }
 
 .food-image{
-    margin-top: 13px;
     height: 20vh;
     width: 20vh;
     border: 2px solid black;
@@ -102,4 +104,22 @@ button {
     text-align: center;
     background: lightgrey;
     border-top: 2px solid black;
+}
+
+#food-container{
+    padding:10px;
+}
+
+#site-information{
+    margin-top: 15%;
+}
+
+.cart-item{
+    background: lightgrey;
+    margin-top:5px;
+    border: 1px solid black;
+}
+
+#on-mobile-collapse{
+    display:block!important;
 }
