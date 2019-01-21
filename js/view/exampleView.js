@@ -1,4 +1,4 @@
-/** ExampleView Object constructor
+    /** ExampleView Object constructor
  *
  * This object represents the code for one specific view (in this case the Example view).
  *
@@ -47,29 +47,29 @@ var ExampleView = function (container, model) {
 	 */
 	this.plusButton = container.find("#plusGuest");
 	this.minusButton = container.find("#minusGuest");
-    
+
     this.removeDish = container.find("#removeDish");
     this.dishesHtml = container.find("#dishesHtml");
-    
-    
-    
+
+
+
     // ADDED EVENTS:
-    
+
     this.plusButton.click(()=>{
         let numGuests = model.getNumberOfGuests();
         model.setNumberOfGuests(numGuests + 1);
         numberOfGuests.html(model.getNumberOfGuests());
     });
-    
+
     this.minusButton.click(()=>{
         var numGuests = model.getNumberOfGuests();
         if (numGuests > 1) {
-            model.setNumberOfGuests(numGuests - 1);  
-        }    
+            model.setNumberOfGuests(numGuests - 1);
+        }
         numberOfGuests.html(model.getNumberOfGuests());
     });
-    
-    
+
+
 //    function displayDishes(){
 //        var arr = model.getFullMenu();
 //        var names = [];
@@ -78,22 +78,22 @@ var ExampleView = function (container, model) {
 //        }
 //        dishesHtml.html(names.toString());
 //    }
-//    
+//
 //    // NOTE: ONLY FOR TESTING
 //     model.addDishToMenu(1);
 //     model.addDishToMenu(100);
 //     model.addDishToMenu(200);
-//    
+//
 //     this.removeDish.click(()=>{
 //         // todo
 //         displayDishes();
 //     }
-//    
+//
 	/**
 	 * Here we use @var {jQuery object} numberOfGuests that is a reference to <span>
 	 * in our view to dynamically set it's value to "Hello World".
 	 */
-    
+
     numberOfGuests.html(model.getNumberOfGuests());
 //    displayDishes();
 

@@ -25,9 +25,7 @@ button {
     height: 86.5vh;
 }
 
-#viewDiv > div {
-    height:inherit;
-}
+
 
 #filter-div{
     border-bottom: 2px solid black;
@@ -109,7 +107,7 @@ button {
 @media screen and (max-width: 768px) {
     #mealsCenterDiv {
         border-right: none;
-    }   
+    }
 }
 
 .itemDiv {
@@ -154,7 +152,6 @@ button {
     border: none;
     box-shadow: none;
 }
-
 .jumbotron {
     background: none;
     border-radius:0px;
@@ -170,4 +167,15 @@ button {
 
 .blackBorder {
     border: 2px solid #000;
+}
+
+@media (min-width: 770px) {
+    #viewDiv > div{
+        height:inherit;
+    }
+
+    #cart{
+        display:block!important;
+        visibility: visible;
+    }
 }
