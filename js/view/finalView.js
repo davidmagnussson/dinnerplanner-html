@@ -12,7 +12,7 @@
  * @param {jQuery object} container - references the HTML parent element that contains the view.
  * @param {Object} model - the reference to the Dinner Model
  */
-var ExampleView = function (container, model) {
+var FinalView = function (container, model) {
 
 	/**
 	 * We use the @method find() on @var {jQuery object} container to look for various elements
@@ -34,6 +34,7 @@ var ExampleView = function (container, model) {
 	 *
 	 */
 	var numberOfGuests = container.find("#numberOfGuests");
+  var foodItems = container.find("#foodItems");
 
 	/**
 	 * When we want references to some view elements to be available from outside of view, we
@@ -47,54 +48,55 @@ var ExampleView = function (container, model) {
 	 */
 	this.plusButton = container.find("#plusGuest");
 	this.minusButton = container.find("#minusGuest");
-    
-    this.removeDish = container.find("#removeDish");
-    this.dishesHtml = container.find("#dishesHtml");
-    
-    
-    
-    // ADDED EVENTS:
-    
-    this.plusButton.click(()=>{
-        let numGuests = model.getNumberOfGuests();
-        model.setNumberOfGuests(numGuests + 1);
-        numberOfGuests.html(model.getNumberOfGuests());
-    });
-    
-    this.minusButton.click(()=>{
-        var numGuests = model.getNumberOfGuests();
-        if (numGuests > 1) {
-            model.setNumberOfGuests(numGuests - 1);  
-        }    
-        numberOfGuests.html(model.getNumberOfGuests());
-    });
-    
-    
-//    function displayDishes(){
-//        var arr = model.getFullMenu();
-//        var names = [];
-//        for (key in arr) {
-//            names.push(arr[key].name);
-//        }
-//        dishesHtml.html(names.toString());
-//    }
-//    
-//    // NOTE: ONLY FOR TESTING
-//     model.addDishToMenu(1);
-//     model.addDishToMenu(100);
-//     model.addDishToMenu(200);
-//    
-//     this.removeDish.click(()=>{
-//         // todo
-//         displayDishes();
-//     }
-//    
+
+  // NOTE: ONLY FOR TESTING!
+  model.addDishToMenu(1);
+  model.addDishToMenu(100);
+  model.addDishToMenu(200);
+
+  var selectedDishes = model.getFullMenu();
+  var items = [];
+  for (key in selectedDishes) {
+     var imgSrc = selectedDishes[key].image;
+     var foodName = selectedDishes[key].name;
+     var foodDesc = selectedDishes[key].description;
+     var itemHtml = `<!-- ITEM #`+key+` -->
+          <div class="row itemDiv">
+
+              <!-- ITEM #`+key+` IMG -->
+              <div class="col-sm-4 col-3 d-md-none"></div>
+              <div class="col-md-3 col-sm-4 col-6 itemDiv">
+                  <img src="images/`+imgSrc+`" class="blackBorder"/>
+              </div>
+              <div class="col-sm-4 col-3 d-md-none"></div>
+
+              <div class="col-md-9 col-12 row">
+
+                  <!-- ITEM #`+key+` NAME/DESC -->
+                  <div class="col-md-4">
+                      <h3>`+foodName+`</h3>
+                      <p>`+foodDesc+`</p>
+                  </div>
+
+                  <!-- ITEM #`+key+` PREP -->
+                  <div class="col-md-8">
+                      <h5>Preparation</h5>
+                      <p>Lorem</p>
+                  </div>
+
+              </div>
+
+          </div>`;
+
+      items.push(itemHtml);
+  }
+
 	/**
 	 * Here we use @var {jQuery object} numberOfGuests that is a reference to <span>
 	 * in our view to dynamically set it's value to "Hello World".
 	 */
-    
-    numberOfGuests.html(model.getNumberOfGuests());
-//    displayDishes();
+
+  numberOfGuests.html(model.getNumberOfGuests());
+  foodItems.html(items);
 
 }
