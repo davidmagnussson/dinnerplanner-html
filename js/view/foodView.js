@@ -33,8 +33,8 @@ var FoodView = function (container, model) {
 	 * in some other view gives the same ID to another element.
 	 *
 	 */
-	var numberOfGuests = container.find("#numberOfGuests");
-  var showFood = container.find("#site-content");
+	this.numberOfGuests = container.find("#numberOfGuests");
+  this.showFood = container.find("#site-content");
 
 	/**
 	 * When we want references to some view elements to be available from outside of view, we
@@ -46,8 +46,6 @@ var FoodView = function (container, model) {
 	 * this button and do something with it (see Lab 2).
 	 *
 	 */
-	this.plusButton = container.find("#plusGuest");
-	this.minusButton = container.find("#minusGuest");
 
   // NOTE: ONLY FOR TESTING!
   model.addDishToMenu(1);
@@ -108,7 +106,9 @@ var FoodView = function (container, model) {
 	 * in our view to dynamically set it's value to "Hello World".
 	 */
 
-  numberOfGuests.html(model.getNumberOfGuests());
-  showFood.html(content);
+  this.numberOfGuests.html(model.getNumberOfGuests());
+  this.showFood.html(content);
 
+  // Add menu
+  var cartView = new CartView(container, model);
 }

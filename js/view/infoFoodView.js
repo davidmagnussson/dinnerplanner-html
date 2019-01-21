@@ -33,8 +33,6 @@ var InfoFoodView = function (container, model) {
 	 * in some other view gives the same ID to another element.
 	 *
 	 */
-	var numberOfGuests = container.find("#numberOfGuests");
-
 
 
 	/**
@@ -47,6 +45,7 @@ var InfoFoodView = function (container, model) {
 	 * this button and do something with it (see Lab 2).
 	 *
 	 */
+  this.numberOfGuests = container.find("#numberOfGuests");
 	this.foodNameElem = container.find("#foodName");
 	this.foodDescElem = container.find("#foodDesc");
   this.foodImg = container.find(".foodBigImg");
@@ -59,7 +58,8 @@ var InfoFoodView = function (container, model) {
   model.addDishToMenu(200);
 
   var selectedDishes = model.getFullMenu();
-  var id = 9;
+  console.log(selectedDishes);
+  var id = 12;
   var displayedDish = selectedDishes[id];
   var imgSrc = displayedDish.image;
   var foodName = displayedDish.name;
@@ -97,7 +97,7 @@ var InfoFoodView = function (container, model) {
   this.foodImg.attr("src", "images/"+imgSrc);
 	this.ingredientList.html(ingredientsHtml);
   this.totalMenuPrice.text(model.getMenuPrice(displayedDish.id));
-  numberOfGuests.text(model.getNumberOfGuests());
+  this.numberOfGuests.text(model.getNumberOfGuests());
 
   // Add menu.
   var cartView = new CartView(container, model);

@@ -7,8 +7,6 @@ $(function() {
 
 	var finalView = new FinalView($("#finalView"), model);
 
-	var cartView = new CartView($("#page1"), model);
-
 	var foodView = new FoodView($("#page1"), model);
 
 	var overviewView = new OverviewView($("#overviewView"), model);

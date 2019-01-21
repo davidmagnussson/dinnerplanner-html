@@ -33,7 +33,7 @@ var ExampleView = function (container, model) {
 	 * in some other view gives the same ID to another element.
 	 *
 	 */
-	var numberOfGuests = container.find("#numberOfGuests");
+	this.numberOfGuests = container.find("#numberOfGuests");
 
 	/**
 	 * When we want references to some view elements to be available from outside of view, we
@@ -58,7 +58,7 @@ var ExampleView = function (container, model) {
     this.plusButton.click(()=>{
         let numGuests = model.getNumberOfGuests();
         model.setNumberOfGuests(numGuests + 1);
-        numberOfGuests.html(model.getNumberOfGuests());
+        this.numberOfGuests.html(model.getNumberOfGuests());
     });
 
     this.minusButton.click(()=>{
@@ -66,7 +66,7 @@ var ExampleView = function (container, model) {
         if (numGuests > 1) {
             model.setNumberOfGuests(numGuests - 1);
         }
-        numberOfGuests.html(model.getNumberOfGuests());
+        this.numberOfGuests.html(model.getNumberOfGuests());
     });
 
 
@@ -94,7 +94,7 @@ var ExampleView = function (container, model) {
 	 * in our view to dynamically set it's value to "Hello World".
 	 */
 
-    numberOfGuests.html(model.getNumberOfGuests());
+    this.numberOfGuests.html(model.getNumberOfGuests());
 //    displayDishes();
 
 }

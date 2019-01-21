@@ -33,9 +33,7 @@ var OverviewView = function (container, model) {
 	 * in some other view gives the same ID to another element.
 	 *
 	 */
-	var numberOfGuests = container.find("#numberOfGuests");
-  var foodItems = container.find("#foodItems");
-	var totalMenuPrice = container.find("#totalMenuPrice");
+
 
 	/**
 	 * When we want references to some view elements to be available from outside of view, we
@@ -47,8 +45,9 @@ var OverviewView = function (container, model) {
 	 * this button and do something with it (see Lab 2).
 	 *
 	 */
-	this.plusButton = container.find("#plusGuest");
-	this.minusButton = container.find("#minusGuest");
+	 this.numberOfGuests = container.find("#numberOfGuests");
+   this.foodItems = container.find("#foodItems");
+	 this.totalMenuPrice = container.find("#totalMenuPrice");
 
   // NOTE: ONLY FOR TESTING!
   model.addDishToMenu(1);
@@ -84,8 +83,8 @@ var OverviewView = function (container, model) {
 	 * in our view to dynamically set it's value to "Hello World".
 	 */
 
-  numberOfGuests.html(model.getNumberOfGuests());
-  foodItems.html(items);
-	totalMenuPrice.html(model.getTotalMenuPrice());
+  this.numberOfGuests.html(model.getNumberOfGuests());
+  this.foodItems.html(items);
+	this.totalMenuPrice.html(model.getTotalMenuPrice());
 
 }
