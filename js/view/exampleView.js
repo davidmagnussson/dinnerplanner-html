@@ -1,4 +1,4 @@
-/** ExampleView Object constructor
+    /** ExampleView Object constructor
  *
  * This object represents the code for one specific view (in this case the Example view).
  *
@@ -47,7 +47,9 @@ var ExampleView = function (container, model) {
 	 */
 	this.plusButton = container.find("#plusGuest");
 	this.minusButton = container.find("#minusGuest");
-
+    
+    model.setNumberOfGuests(3);
+    var number = model.getNumberOfGuests;
 	/**
 	 * Here we use @var {jQuery object} numberOfGuests that is a reference to <span>
 	 * in our view to dynamically set it's value to "Hello World".
@@ -63,6 +65,6 @@ var ExampleView = function (container, model) {
 	// for (key in arr) {
 	// 	names.push(arr[key].name);
 	// }
-	numberOfGuests.html(names.toString());
+	numberOfGuests.html(number);
 
 }
