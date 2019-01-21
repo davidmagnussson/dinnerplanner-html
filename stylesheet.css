@@ -42,9 +42,6 @@ button {
     border-right: 2px solid black;*/
 }
 
-#num-people-form{
-}
-
 #cart-description{
     border-bottom: 2px solid black;
     border-top: 2px solid black;
@@ -144,23 +141,9 @@ button {
     border: 1px solid black;
 }
 
-#on-mobile-collapse{
-    display:block;
+#menu-button{
+    color: black;
+    background-color:white;
+    border: none;
+    box-shadow: none;
 }
-
-@media (min-width: 768px) {
-.collapse.collapse-on-sm{
-    display: block;
-    height: auto !important;
-    visibility: visible;
-    }
-}
-
-/*För att ändra heighten på carten på mobil skärm
-@media (max-width: 600px)
-{
-    #cart{
-        height: auto;
-    }
-}
-*/
