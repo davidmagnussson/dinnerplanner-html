@@ -20,13 +20,14 @@
     <div id="viewDiv" class="container-fluid">
         <div class="row">
        
-            <div class="col-md-3">
+            <!-- MENU -->
+            <div class="col-md-3 col-sm-0">
 
             </div>
 
             <div class="container-fluid col-md-9">
                 <div class="row">
-                    <div class="container col-md-6 padTop">
+                    <div class="container col-md-6 padTop col-sm-12">
                         <h3>FOOD_NAME_XXX</h3>
                         <img class="foodBigImg" src="images/meatballs.jpg"/>
                         <br/>
@@ -34,33 +35,37 @@
                         <button>Back To Search</button>
                         <br/><br/>
                     </div>
-                    <div class="row col-md-6">
-                        <div id="ingredientBox" class="container col-md-12 lightYellow text-left">
+                    <div class="container-fluid col-md-6 col-sm-12">
+                        <div id="ingredientBox" class="container-fluid col-xs-12 lightYellow text-left">
                             
-                            <div id="ingredients">
+                            <div id="ingredients" class="col-sm-12">
                                 <p>Ingredients for X people</p>
                                 <hr>
-                                <ul>
-                                    <li class="row">
-                                        <p class="text-left col-md-4">XXX unit</p>
-                                        <p class="text-left col-md-4">NAME_X</p>
-                                        <p class="text-right col-md-4">
-                                            SEK XX
-                                        </p>
+                                <div class="col-sm-12 row">
+                                <ul class="col-sm-12">
+                                    <li class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col">XXX unit</div>
+                                            <div class="col">NAME_X</div>
+                                            <div class="col">
+                                                SEK XX
+                                            </div>
+                                        </div>
                                     </li>
                                 </ul>
+                                </div>
                                 
                             </div>
                             
-                            <div id="ingredientSummary" class="col-md-12">
+                            <div id="ingredientSummary" class="col-sm-12">
                                 <hr>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col">
                                         <button class="yellow text-left">
                                             Add to menu
                                         </button>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col">
                                         <p class="text-right">SEK XX</p>
                                     </div>
                                 </div>

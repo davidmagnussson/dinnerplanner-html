@@ -94,8 +94,9 @@ button {
 }
 
 #myDinner {
-    padding-top: 20px;
-    height: 10vh!important;
+    padding-top: 1.5em;
+    padding-bottom: 1em;
+    min-height: 10vh!important;
     border-bottom: 1px solid #333;
 }
 
@@ -108,8 +109,14 @@ button {
     border-right: 1px solid #ccc;
 }
 
+@media screen and (max-width: 768px) {
+    #mealsCenterDiv {
+        border-right: none;
+    }   
+}
+
 .itemDiv {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .food-image{
@@ -146,4 +153,21 @@ button {
 
 #on-mobile-collapse{
     display:block!important;
+}
+
+.jumbotron {
+    background: none;
+    border-radius:0px;
+}
+
+#mealsCenterDiv .food-image {
+    margin: 20px;
+}
+
+#mealsCenterDiv .food-image .text-right {
+    margin-top: 10px;
+}
+
+.blackBorder {
+    border: 2px solid #000;
 }
