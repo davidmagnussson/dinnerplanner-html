@@ -29,6 +29,33 @@ button {
     height:inherit;
 }
 
+#filter-div{
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    height:15vh;
+}
+
+#cart{
+    border:2px solid black;
+    /*border-left:2px solid black;
+    border-top: 2px solid black;
+    border-right: 2px solid black;*/
+}
+
+#num-people-form{
+}
+
+#cart-description{
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    background: lightgrey;
+}
+
+#cart-description p{
+    padding-top:11px;
+    display: inline;
+}
+
 .yellow {
     background-color:#f4b642;
 }
@@ -66,7 +93,6 @@ button {
     height: 7vh!important;
 }
 
-
 #myDinner {
     padding-top: 20px;
     height: 10vh!important;
@@ -84,4 +110,40 @@ button {
 
 .itemDiv {
     margin-bottom: 40px;
+}
+
+.food-image{
+    height: 20vh;
+    width: 20vh;
+    border: 2px solid black;
+}
+
+.food-image img{
+    height: 15vh;
+    width: 100%;
+}
+
+.food-image #food-name{
+    height: 4.5vh;
+    text-align: center;
+    background: lightgrey;
+    border-top: 2px solid black;
+}
+
+#food-container{
+    padding:10px;
+}
+
+#site-information{
+    margin-top: 15%;
+}
+
+.cart-item{
+    background: lightgrey;
+    margin-top:5px;
+    border: 1px solid black;
+}
+
+#on-mobile-collapse{
+    display:block!important;
 }
