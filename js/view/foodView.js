@@ -47,11 +47,6 @@ var FoodView = function (container, model) {
 	 *
 	 */
 
-  // NOTE: ONLY FOR TESTING!
-  model.addDishToMenu(1);
-  model.addDishToMenu(100);
-  model.addDishToMenu(200);
-
   var selectedDishes = model.getAllDishes('starter','');
   var items = "";
   for(key in selectedDishes){

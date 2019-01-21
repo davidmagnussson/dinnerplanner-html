@@ -2,6 +2,16 @@ $(function() {
 	//We instantiate our model
 	var model = new DinnerModel();
 
+	// NOTE: ONLY FOR TESTING!
+	model.addDishToMenu(1);
+	model.addDishToMenu(100);
+	model.addDishToMenu(200);
+
+	model.removeDishFromMenu(100);
+
+	model.addDishToMenu(101);
+
+
 	// And create the instance of ExampleView
 	var exampleView = new ExampleView($("#exampleView"), model);
 

@@ -52,14 +52,9 @@ var InfoFoodView = function (container, model) {
   this.ingredientList = container.find("#ingredientList");
   this.totalMenuPrice = container.find("#totalMenuPrice");
 
-  // NOTE: ONLY FOR TESTING!
-  model.addDishToMenu(1);
-  model.addDishToMenu(100);
-  model.addDishToMenu(200);
-
   var selectedDishes = model.getFullMenu();
   console.log(selectedDishes);
-  var id = 12;
+  var id = 3;
   var displayedDish = selectedDishes[id];
   var imgSrc = displayedDish.image;
   var foodName = displayedDish.name;

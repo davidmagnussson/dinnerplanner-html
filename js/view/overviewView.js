@@ -49,11 +49,6 @@ var OverviewView = function (container, model) {
    this.foodItems = container.find("#foodItems");
 	 this.totalMenuPrice = container.find("#totalMenuPrice");
 
-  // NOTE: ONLY FOR TESTING!
-  model.addDishToMenu(1);
-  model.addDishToMenu(100);
-  model.addDishToMenu(200);
-
   var selectedDishes = model.getFullMenu();
   var items = [];
   for (key in selectedDishes) {

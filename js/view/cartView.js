@@ -47,11 +47,6 @@ var CartView = function (container, model) {
   this.numberOfGuests = container.find("#numberOfGuests");
   this.cart = container.find("#cart");
 
-  // NOTE: ONLY FOR TESTING!
-  model.addDishToMenu(1);
-  model.addDishToMenu(100);
-  model.addDishToMenu(200);
-
   var guests = model.getNumberOfGuests();
   var selectedDishes = model.getFullMenu();
 	var menuPrice = model.getTotalMenuPrice();

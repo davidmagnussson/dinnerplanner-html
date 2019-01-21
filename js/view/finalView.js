@@ -47,11 +47,6 @@ var FinalView = function (container, model) {
 	this.numberOfGuests = container.find("#numberOfGuests");
 	this.foodItems = container.find("#foodItems");
 
-  // NOTE: ONLY FOR TESTING!
-  model.addDishToMenu(1);
-  model.addDishToMenu(100);
-  model.addDishToMenu(200);
-
   var selectedDishes = model.getFullMenu();
   var items = [];
   for (key in selectedDishes) {
