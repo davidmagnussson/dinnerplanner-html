@@ -145,5 +145,22 @@ button {
 }
 
 #on-mobile-collapse{
-    display:block!important;
+    display:block;
 }
+
+@media (min-width: 768px) {
+.collapse.collapse-on-sm{
+    display: block;
+    height: auto !important;
+    visibility: visible;
+    }
+}
+
+/*För att ändra heighten på carten på mobil skärm
+@media (max-width: 600px)
+{
+    #cart{
+        height: auto;
+    }
+}
+*/
