@@ -42,9 +42,6 @@ button {
     border-right: 2px solid black;*/
 }
 
-#num-people-form{
-}
-
 #cart-description{
     border-bottom: 2px solid black;
     border-top: 2px solid black;
@@ -151,8 +148,11 @@ button {
     border: 1px solid black;
 }
 
-#on-mobile-collapse{
-    display:block!important;
+#menu-button{
+    color: black;
+    background-color:white;
+    border: none;
+    box-shadow: none;
 }
 
 .jumbotron {
