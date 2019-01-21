@@ -12,7 +12,7 @@
  * @param {jQuery object} container - references the HTML parent element that contains the view.
  * @param {Object} model - the reference to the Dinner Model
  */
-var OverviewView = function (container, model) {
+var InfoFoodView = function (container, model) {
 
 	/**
 	 * We use the @method find() on @var {jQuery object} container to look for various elements
@@ -35,6 +35,8 @@ var OverviewView = function (container, model) {
 	 */
 	var numberOfGuests = container.find("#numberOfGuests");
 
+
+
 	/**
 	 * When we want references to some view elements to be available from outside of view, we
 	 * define them as this.someName. We don't need this in Lab 1 yet, but in Lab 2 it
@@ -45,8 +47,11 @@ var OverviewView = function (container, model) {
 	 * this button and do something with it (see Lab 2).
 	 *
 	 */
-	this.plusButton = container.find("#plusGuest");
-	this.minusButton = container.find("#minusGuest");
+	this.foodNameElem = container.find("#foodName");
+	this.foodDescElem = container.find("#foodDesc");
+  this.foodImg = container.find(".foodBigImg");
+  this.ingredientList = container.find("#ingredientList");
+  this.totalMenuPrice = container.find("#totalMenuPrice");
 
   // NOTE: ONLY FOR TESTING!
   model.addDishToMenu(1);
@@ -54,7 +59,8 @@ var OverviewView = function (container, model) {
   model.addDishToMenu(200);
 
   var selectedDishes = model.getFullMenu();
-  var displayedDish = selectedDishes[0];
+  var id = 9;
+  var displayedDish = selectedDishes[id];
   var imgSrc = displayedDish.image;
   var foodName = displayedDish.name;
   var foodDesc = displayedDish.description;
@@ -86,9 +92,13 @@ var OverviewView = function (container, model) {
 	 * Here we use @var {jQuery object} numberOfGuests that is a reference to <span>
 	 * in our view to dynamically set it's value to "Hello World".
 	 */
+  this.foodNameElem.text(foodName);
+  this.foodDescElem.text(foodDesc);
+  this.foodImg.attr("src", "images/"+imgSrc);
+	this.ingredientList.html(ingredientsHtml);
+  this.totalMenuPrice.text(model.getMenuPrice(displayedDish.id));
+  numberOfGuests.text(model.getNumberOfGuests());
 
-  numberOfGuests.html(model.getNumberOfGuests());
-  foodItems.html(items);
-	totalMenuPrice.html(model.getTotalMenuPrice());
-
+  // Add menu.
+  var cartView = new CartView(container, model);
 }
