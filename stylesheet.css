@@ -115,9 +115,10 @@ button {
 }
 
 .food-image{
-    height: 20vh;
+    height: 22vh;
     width: 20vh;
     border: 2px solid black;
+    margin: 10px;
 }
 
 .food-image img{
@@ -126,7 +127,7 @@ button {
 }
 
 .food-image #food-name{
-    height: 4.5vh;
+    height: 6.5vh;
     text-align: center;
     background: lightgrey;
     border-top: 2px solid black;
@@ -178,4 +179,8 @@ button {
         display:block!important;
         visibility: visible;
     }
+}
+
+#food-cost{
+  margin-right:5px;
 }

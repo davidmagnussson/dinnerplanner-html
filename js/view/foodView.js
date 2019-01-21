@@ -12,7 +12,7 @@
  * @param {jQuery object} container - references the HTML parent element that contains the view.
  * @param {Object} model - the reference to the Dinner Model
  */
-var CartView = function (container, model) {
+var FoodView = function (container, model) {
 
 	/**
 	 * We use the @method find() on @var {jQuery object} container to look for various elements
@@ -34,7 +34,7 @@ var CartView = function (container, model) {
 	 *
 	 */
 	var numberOfGuests = container.find("#numberOfGuests");
-  var cart = container.find("#cart");
+  var showFood = container.find("#site-content");
 
 	/**
 	 * When we want references to some view elements to be available from outside of view, we
@@ -54,55 +54,51 @@ var CartView = function (container, model) {
   model.addDishToMenu(100);
   model.addDishToMenu(200);
 
-  var selectedDishes = model.getFullMenu();
-	var menuPrice = model.getTotalMenuPrice();
+  var selectedDishes = model.getAllDishes('starter','');
   var items = "";
   for(key in selectedDishes){
     var foodName = selectedDishes[key].name;
-		var foodCost = model.getMenuPrice(selectedDishes[key].id);
-    var fill = `<div class="cart-item row text-center">
-        <p id="foodName" class="text-left col">`+foodName+`</p>
-        <p id="food-cost" class="text-right" id="food-cost">`+foodCost+`</p>
-        </div>`;
+    var imgSrc = selectedDishes[key].image;
+    var fill = `<div class="food-image">
+                    <div>
+                        <img src="images/`+imgSrc+`"/>
+                    </div>
+                    <div id="food-name">
+                        <p>`+foodName+`</p>
+                    </div>
+                </div>`;
     items+=fill;
   }
 
-
-  var content =`<div id="header-in-cart" class="row">
-      <div class="col">
-          <strong>My Dinner</strong>
+  var content =`<div class="row form-inline">
+      <div style="height:15vh" class="col-md-12 d-none d-md-block d-lg-block" id="filter-div">
+          <strong>FIND A DISH</strong>
+          <form class="row">
+              <div class="form-group col-md-4 col-sm-4">
+                <input placeholder="Enter key words"/>
+              </div>
+              <div class="form-group col-md-6 col-sm-6 row" id="food-type">
+                <select class="form-control col-md-12">
+                    <option>All</option>
+                    <option>Main Course</option>
+                    <option>Side Dish</option>
+                    <option>Appertizer</option>
+                    <option>...</option>
+                </select>
+              </div>
+              <div class="col-md-2 col-sm-2">
+                <button type="submit">Search</button>
+              </div>
+          </form>
       </div>
-      <div class="d-block d-md-none">
-          <strong><span class="total_cost"></span></strong>
-          <button data-toggle="collapse" data-target="#on-mobile-collapse" type="button" id="menu-button" id="menu-button">
-              <i class="fas fa-bars"></i>
-          </button>
-      </div>
-  </div>
-  <div id="on-mobile-collapse">
-      <br/>
-      <form id="num-people-form">
-          <div class="form-group row">
-              <label for="number-of-people" class="col">People</label>
-              <input class="form-control col" type="number" value="1" min="1" id="number-of-people"/>
-          </div>
-      </form>
-      <div id="cart-description" class="row">
-          <div class="col-md-12 col-lg-12 col-sm-12 row">
-              <p class="text-left col">Dish Name</p>
-              <p class="text-right">Cost</p>
-          </div>
-      </div>
-
-      <div class="container-fluid"> <!--Detta är det som skiljer prototypbild 2 och 4-->
-        `+items+`
-      </div>
-
-      <div id="menu-list container-fluid">
-          <p class="text-right">SEK <span class="total_cost">`+menuPrice+`</span></p>
-          <div class="text-center">
-              <button>Confirm Order</button>
-          </div><br/>
+      <div class="col-md-12 col-sm-12" id="food-menu">
+        <div id="food-container" class="row"> <!--Innehåller alla maträtter-->
+            <div class="d-md-none col-sm-4 col-3"></div>
+            <div class="col-md-12 col-sm-4 col-8 row">
+            `+items+`
+            </div>
+            <div class="d-md-none col-sm-2 col-1"></div>
+        </div>
       </div>
   </div>`;
 
@@ -113,6 +109,6 @@ var CartView = function (container, model) {
 	 */
 
   numberOfGuests.html(model.getNumberOfGuests());
-  cart.html(content);
+  showFood.html(content);
 
 }
