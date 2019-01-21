@@ -48,6 +48,7 @@ button {
 
 .restDiv {
     min-height: 75vh;
+    padding-top: 3vh;
 }
 
 /* Ingredient Box*/
@@ -73,5 +74,14 @@ button {
 }
 
 #meals {
-    height: 40vh;
+    min-height: 50vh;
+}
+
+#mealsCenterDiv {
+    min-height: 40vh;
+    border-right: 1px solid #ccc;
+}
+
+.itemDiv {
+    margin-bottom: 40px;
 }
