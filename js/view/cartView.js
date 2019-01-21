@@ -52,6 +52,7 @@ var CartView = function (container, model) {
   model.addDishToMenu(100);
   model.addDishToMenu(200);
 
+  var guests = model.getNumberOfGuests();
   var selectedDishes = model.getFullMenu();
 	var menuPrice = model.getTotalMenuPrice();
   var items = "";
@@ -82,7 +83,7 @@ var CartView = function (container, model) {
       <form id="num-people-form">
           <div class="form-group row">
               <label for="number-of-people" class="col">People</label>
-              <input class="form-control col" type="number" value="1" min="1" id="number-of-people"/>
+              <input class="form-control col" type="number" value="`+guests+`" min="1" id="number-of-people"/>
           </div>
       </form>
       <div id="cart-description" class="row">
