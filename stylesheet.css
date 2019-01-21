@@ -25,9 +25,7 @@ button {
     height: 86.5vh;
 }
 
-#viewDiv > div {
-    height:inherit;
-}
+
 
 #filter-div{
     border-bottom: 2px solid black;
@@ -146,4 +144,19 @@ button {
     background-color:white;
     border: none;
     box-shadow: none;
+}
+
+@media (min-width: 770px) {
+    #viewDiv > div{
+        height:inherit;
+    }
+    
+    #cart{
+        display:block!important;
+        visibility: visible;
+    }
+}
+
+#menu-button{
+    
 }
