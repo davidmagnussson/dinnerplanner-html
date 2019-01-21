@@ -4,11 +4,12 @@ $(function() {
 
 	// And create the instance of ExampleView
 	var exampleView = new ExampleView($("#exampleView"), model);
-    
-    
-    var finalView = new FinalView($("#finalView"), model);
-    
-    
+
+  var finalView = new FinalView($("#finalView"), model);
+
+	var overviewView = new OverviewView($("#overviewView"), model);
+
+
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to
 	 * use the $('someSelector') to search for elements in the whole HTML.
