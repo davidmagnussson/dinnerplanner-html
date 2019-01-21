@@ -11,6 +11,8 @@ $(function() {
 
 	var overviewView = new OverviewView($("#overviewView"), model);
 
+	var infoFoodView = new InfoFoodView($("#infoFood"), model);
+
 
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to
