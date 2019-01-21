@@ -34,8 +34,6 @@ var OverviewView = function (container, model) {
 	 *
 	 */
 	var numberOfGuests = container.find("#numberOfGuests");
-  var foodItems = container.find("#foodItems");
-	var totalMenuPrice = container.find("#totalMenuPrice");
 
 	/**
 	 * When we want references to some view elements to be available from outside of view, we
@@ -56,27 +54,32 @@ var OverviewView = function (container, model) {
   model.addDishToMenu(200);
 
   var selectedDishes = model.getFullMenu();
-  var items = [];
-  for (key in selectedDishes) {
-     var imgSrc = selectedDishes[key].image;
-     var foodName = selectedDishes[key].name;
-     var foodCost = model.getMenuPrice(selectedDishes[key].id);
-     var itemHtml = `<!-- ITEM #`+key+` -->
-		 <div class="d-md-none col-sm-4 col-2"></div>
-		 <div class="col-md-4 col-sm-4 col-8">
-				 <div class="food-image">
-						 <div>
-								 <img src="images/`+imgSrc+`"/>
-						 </div>
-						 <div id="food-name">
-								 <p>`+foodName+`</p>
-						 </div>
-						 <p class="text-right">SEK `+foodCost+`</p>
-				 </div>
-		 </div>
-		 <div class="d-md-none col-sm-4 col-2"></div>`;
+  var displayedDish = selectedDishes[0];
+  var imgSrc = displayedDish.image;
+  var foodName = displayedDish.name;
+  var foodDesc = displayedDish.description;
 
-      items.push(itemHtml);
+  var ingredients = displayedDish.ingredients;
+  var ingredientsHtml = [];
+  for (key in ingredients) {
+
+     var unit = ingredients[key].unit;
+     var quantity = ingredients[key].quantity;
+     var name = ingredients[key].name;
+     var cost = ingredients[key].price * model.getNumberOfGuests();
+
+     var itemHtml = `
+     <li class="col-sm-12">
+         <div class="row">
+             <div class="col">`+quantity+` `+unit+`</div>
+             <div class="col">`+name+`</div>
+             <div class="col">
+                 SEK `+cost+`
+             </div>
+         </div>
+     </li>`;
+
+    ingredientsHtml.push(itemHtml);
   }
 
 	/**

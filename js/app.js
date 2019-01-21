@@ -5,10 +5,11 @@ $(function() {
 	// And create the instance of ExampleView
 	var exampleView = new ExampleView($("#exampleView"), model);
 
-
-  var finalView = new FinalView($("#finalView"), model);
+	var finalView = new FinalView($("#finalView"), model);
 
 	var cartView = new CartView($("#page1"), model);
+
+	var overviewView = new OverviewView($("#overviewView"), model);
 
 
 	/**

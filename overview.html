@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="stylesheet.css"/>
 
   </head>
-  <body>
+  <body id="overviewView">
 	<div id="headerContainer" class="container-fluid">
 		<h1>Dinner planner</h1>
 	</div>
@@ -24,7 +24,7 @@
                     <div class="col-md-6 col-sm-12 row">
                         <div class="col-md-2"></div>
                         <div class="col-md-10">
-                            <h3 class="text-left">My Dinner: X people</h3>
+                            <h3 class="text-left">My Dinner: <span id="numberOfGuests"></span> people</h3>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
@@ -42,59 +42,13 @@
 
                         </div>
                         <div id="mealsCenterDiv" class="col-md-8 jumbotron vertical-center">
-                            <div class="row">
-
-                                <!-- ITEM #1 -->
-                                <div class="d-md-none col-sm-4 col-2"></div>
-                                <div class="col-md-4 col-sm-4 col-8">
-                                    <div class="food-image ">
-                                        <div>
-                                            <img src="images/meatballs.jpg"/>
-                                        </div>
-                                        <div id="food-name">
-                                            <p>Meatballs</p>
-                                        </div>
-                                        <p class="text-right">SEK XX</p>
-                                    </div>
-                                </div>
-                                <div class="d-md-none col-sm-4 col-2"></div>
-
-                                <!-- ITEM #2 -->
-                                <div class="d-md-none col-sm-4 col-2"></div>
-                                <div class="col-md-4 col-sm-4 col-8">
-                                    <div class="food-image">
-                                        <div>
-                                            <img src="images/meatballs.jpg"/>
-                                        </div>
-                                        <div id="food-name">
-                                            <p>Meatballs</p>
-                                        </div>
-                                        <p class="text-right">SEK XX</p>
-                                    </div>
-                                </div>
-                                 <div class="d-md-none col-sm-4 col-2"></div>
-
-
-                                <!-- ITEM #3 -->
-                                <div class="d-md-none col-sm-4 col-2"></div>
-                                <div class="col-md-4 col-sm-4 col-8">
-                                    <div class="food-image">
-                                        <div>
-                                            <img src="images/meatballs.jpg"/>
-                                        </div>
-                                        <div id="food-name">
-                                            <p>Meatballs</p>
-                                        </div>
-                                        <p class="text-right">SEK XX</p>
-                                    </div>
-                                </div>
-                                 <div class="d-md-none col-sm-4 col-2"></div>
-
+                            <!-- Iterate in content HERE!-->
+                            <div id="foodItems" class="row">
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div style="height:28.2vh;" class="d-none d-md-block d-lg-block"></div>
-                            Total: <br> XXX SEK
+                            Total: <br> <span id="totalMenuPrice"></span> SEK
                         </div>
                     </div>
                     <hr>
