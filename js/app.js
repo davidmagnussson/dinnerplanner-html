@@ -8,7 +8,7 @@ $(function() {
 	model.addDishToMenu(200);
 
 	model.removeDishFromMenu(100);
-
+	model.setNumberOfGuests(5);
 	model.addDishToMenu(101);
 
 

@@ -67,13 +67,13 @@ var CartView = function (container, model) {
           <strong>My Dinner</strong>
       </div>
       <div class="d-block d-md-none">
-          <strong><span class="total_cost"></span></strong>
+          <strong><span class="total_cost">SEK `+menuPrice+`</span></strong>
           <button data-toggle="collapse" data-target="#on-mobile-collapse" type="button" id="menu-button" id="menu-button">
               <i class="fas fa-bars"></i>
           </button>
       </div>
   </div>
-  <div id="on-mobile-collapse">
+  <div class="show collapse d-lg-block d-md-block" id="on-mobile-collapse">
       <br/>
       <form id="num-people-form">
           <div class="form-group row">
