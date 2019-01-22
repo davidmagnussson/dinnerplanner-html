@@ -50,9 +50,10 @@ var FoodView = function (container, model) {
   var selectedDishes = model.getAllDishes('starter','');
   var items = "";
   for(key in selectedDishes){
+    var foodID = selectedDishes[key].id;
     var foodName = selectedDishes[key].name;
     var imgSrc = selectedDishes[key].image;
-    var fill = `<div class="food-image">
+    var fill = `<div class="food-image" id="`+foodID+`">
                     <div>
                         <img src="images/`+imgSrc+`"/>
                     </div>
