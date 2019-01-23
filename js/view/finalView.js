@@ -92,4 +92,11 @@ var FinalView = function (container, model) {
   this.numberOfGuests.html(model.getNumberOfGuests());
   this.foodItems.html(items);
 
+
+	this.update=function(model, changeDetails){
+     // redraw just the portion affected by the changeDetails
+     // or remove all graphics in the view, read the whole model and redraw
+	}
+	model.addObserver(this.update);
+
 }
