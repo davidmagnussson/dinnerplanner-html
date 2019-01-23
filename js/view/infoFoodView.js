@@ -14,54 +14,23 @@
  */
 var InfoFoodView = function (container, model) {
 
-	/**
-	 * We use the @method find() on @var {jQuery object} container to look for various elements
-	 * inside the view in orther to use them later on. For instance:
-	 *
-	 * @var {jQuery object} numberOfGuests is a reference to the <span> element that
-	 * represents the placeholder for where we want to show the number of guests. It's
-	 * a reference to HTML element (wrapped in jQuery object for added benefit of jQuery methods)
-	 * and we can use it to modify <span>, for example to populate it with dynamic data (for now
-	 * only 'Hello world', but you should change this by end of Lab 1).
-	 *
-	 * We use variables when we want to make the reference private (only available within) the
-	 * ExampleView.
-	 *
-	 * IMPORTANT: Never use $('someSelector') directly in the views. Always use container.find
-	 * or some other way of searching only among the containers child elements. In this way you
-	 * make your view code modular and ensure it dosn't break if by mistake somebody else
-	 * in some other view gives the same ID to another element.
-	 *
-	 */
 
+  this.siteContent = container.find("#site-content");
 
-	/**
-	 * When we want references to some view elements to be available from outside of view, we
-	 * define them as this.someName. We don't need this in Lab 1 yet, but in Lab 2 it
-	 * will be important for assigning listeners to these buttons, because the listeners
-	 * should not be assigned in the view, but rather in controller.
-	 *
-	 * We can then, in some other code, use exampleView.plusButton to reference the
-	 * this button and do something with it (see Lab 2).
-	 *
-	 */
-  this.numberOfGuests = container.find("#numberOfGuests");
-	this.foodNameElem = container.find("#foodName");
-	this.foodDescElem = container.find("#foodDesc");
-  this.foodImg = container.find(".foodBigImg");
-  this.ingredientList = container.find("#ingredientList");
-  this.totalMenuPrice = container.find("#totalMenuPrice");
-
+  var numberOfGuests = model.getNumberOfGuests();
   var selectedDishes = model.getFullMenu();
-  console.log(selectedDishes);
-  var id = 3;
+
+  var id = 3; // TODO FIXERINO
   var displayedDish = selectedDishes[id];
-  var imgSrc = displayedDish.image;
+  var imgSrc = "images/"+displayedDish.image;
   var foodName = displayedDish.name;
   var foodDesc = displayedDish.description;
 
+
+  var totalMenuPrice = model.getMenuPrice(displayedDish.id);
+
   var ingredients = displayedDish.ingredients;
-  var ingredientsHtml = [];
+  var ingredientsHtml = "";
   for (key in ingredients) {
 
      var unit = ingredients[key].unit;
@@ -80,19 +49,65 @@ var InfoFoodView = function (container, model) {
          </div>
      </li>`;
 
-    ingredientsHtml.push(itemHtml);
+    ingredientsHtml += itemHtml;
   }
+
+  var html =
+              `<div class="row">
+                  <div class="container col-md-6 padTop col-sm-12">
+                      <h3>`+foodName+`</h3>
+                      <img class="foodBigImg" src="`+imgSrc+`"/>
+                      <br/>
+                      <p>`+foodDesc+`</p>
+                      <button>Back To Search</button>
+                      <br/><br/>
+                  </div>
+                  <div class="container-fluid col-md-6 col-sm-12">
+                      <div id="ingredientBox" class="container-fluid col-xs-12 lightYellow text-left">
+
+                          <div id="ingredients" class="col-sm-12">
+                              <p>Ingredients for <span>`+numberOfGuests+`</span> people</p>
+                              <hr>
+                              <div class="col-sm-12 row">
+                              <ul id="ingredientList" class="col-sm-12">
+                                  `+ingredientsHtml+`
+                              </ul>
+                              </div>
+                          </div>
+
+                          <div id="ingredientSummary" class="col-sm-12">
+                              <hr>
+                              <div class="row">
+                                  <div class="col">
+                                      <button class="yellow text-left">
+                                          Add to menu
+                                      </button>
+                                  </div>
+                                  <div class="col">
+                                      <p class="text-right">SEK <span>`+totalMenuPrice+`</span></p>
+                                  </div>
+                              </div>
+
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+
+                  <div class="container col-md-12 padTop">
+                      <h3>Preparation</h3>
+                      <p>Lorem</p>
+                  </div>
+
+              </div>`;
 
 	/**
 	 * Here we use @var {jQuery object} numberOfGuests that is a reference to <span>
 	 * in our view to dynamically set it's value to "Hello World".
 	 */
-  this.foodNameElem.text(foodName);
-  this.foodDescElem.text(foodDesc);
-  this.foodImg.attr("src", "images/"+imgSrc);
-	this.ingredientList.html(ingredientsHtml);
-  this.totalMenuPrice.text(model.getMenuPrice(displayedDish.id));
-  this.numberOfGuests.text(model.getNumberOfGuests());
+
+  this.siteContent.html(html);
 
   // Add menu.
   var cartView = new CartView(container, model);

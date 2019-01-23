@@ -12,16 +12,19 @@ $(function() {
 	model.addDishToMenu(101);
 
 
-	// And create the instance of ExampleView
-	var exampleView = new ExampleView($("#exampleView"), model);
+	// And create the instance of the default showing view
 
-	var finalView = new FinalView($("#finalView"), model);
+	var showing = new FrontPageView($("#viewDiv"), model);
 
-	var foodView = new FoodView($("#page1"), model);
 
-	var overviewView = new OverviewView($("#overviewView"), model);
 
-	var infoFoodView = new InfoFoodView($("#infoFood"), model);
+	// var finalView = new FinalView($("#viewDiv"), model);
+	//
+	// var foodView = new FoodView($("#viewDiv"), model);
+	//
+	// var overviewView = new OverviewView($("#viewDiv"), model);
+	//
+	// var infoFoodView = new InfoFoodView($("#viewDiv"), model);
 
 
 	/**
