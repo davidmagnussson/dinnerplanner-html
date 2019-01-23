@@ -11,11 +11,23 @@ $(function() {
 	model.setNumberOfGuests(5);
 	model.addDishToMenu(101);
 
-
 	// And create the instance of the default showing view
 
 	var showing = new FrontPageView($("#viewDiv"), model);
 
+	console.log(showing.createDinner.id);
+
+	showing.createDinner.click(function(){
+		console.log("CLICK");
+		alert("CLICK");
+	});
+
+
+
+
+	var changeView = function(newViewObj){
+		showing = newViewObj;
+	}
 
 
 	// var finalView = new FinalView($("#viewDiv"), model);
