@@ -56,10 +56,11 @@ var CartView = function (container, model) {
     var items = "";
     for(key in selectedDishes){
       var foodName = selectedDishes[key].name;
-      var foodCost = model.getMenuPrice(selectedDishes[key].id);
+      var foodId = selectedDishes[key].id;
+      var foodCost = model.getMenuPrice(foodId);
       var fill = `<div class="cart-item row text-center">
           <p id="foodName" class="text-left col">`+foodName+`</p>
-          <p id="food-cost" class="text-right" id="food-cost">`+foodCost+`</p>
+          <p class="foodCostElement text-right" id="`+foodId+`">`+foodCost+`</p>
           </div>`;
       items+=fill;
     }
@@ -78,7 +79,7 @@ var CartView = function (container, model) {
     </div>
     <div class="show collapse d-lg-block d-md-block" id="on-mobile-collapse">
         <br/>
-        <form id="num-people-form">
+        <form id="num-people-form" action="#">
             <div class="form-group row">
                 <label for="number-of-people" class="col">People</label>
                 <input class="form-control col" type="number" value="`+guests+`" min="1" id="number-of-people"/>
@@ -115,8 +116,10 @@ var CartView = function (container, model) {
 	 */
   this.update=function(model, changeDetails){
      // redraw just the portion affected by the changeDetails
-     // or remove all graphics in the view, read the whole model and redraw
-     this.init();
+     container.find(".foodCostElement").each(function(index,element){
+       this.innerHTML = model.getMenuPrice(element.id);
+     })
+     container.find(".total_cost").text(model.getTotalMenuPrice());
 	}
 	model.addObserver(this.update);
 }

@@ -29,9 +29,9 @@ $(function() {
 		subController = new CartViewController(subShowing, model);
 	}
 
-	function showInfoFoodView(){
+	function showInfoFoodView(id){
 		template = new PartialPageView($("#viewDiv"), model);
-		showing = new InfoFoodView($("#site-content"), model);
+		showing = new InfoFoodView($("#site-content"), model, id);
 		controller = new InfoFoodViewController(showing, model);
 		subShowing = new CartView($("#cart"), model);
 		subController = new CartViewController(subShowing, model);
@@ -51,11 +51,12 @@ $(function() {
 	showFrontPageView();
 
 	// General State Controller:
- 	signal = function(btnId){
+ 	signal = function(btnId, details = ""){
+		model.deleteObservers();
 		if(btnId == "createDinner" || btnId == "backToSearch") {
 			showFoodView();
-		} else if(btnId == "search") {
-			showFrontPageView(); // TODO: REMOVE! Just for demonstration.
+		} else if(btnId == "food-image") {
+			showInfoFoodView(details);
 		} else if(btnId == "confirm") {
 			showOverviewView();
 		} else if(btnId = "printRecipe"){

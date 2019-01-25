@@ -83,7 +83,8 @@ var FoodView = function (container, model) {
 	this.update=function(model, changeDetails){
      // redraw just the portion affected by the changeDetails
      // or remove all graphics in the view, read the whole model and redraw
-		 this.init();
+
+		 // TODO SEARCH
 	}
 	model.addObserver(this.update);
 }

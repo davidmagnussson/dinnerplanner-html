@@ -12,28 +12,34 @@
  * @param {jQuery object} container - references the HTML parent element that contains the view.
  * @param {Object} model - the reference to the Dinner Model
  */
-var InfoFoodView = function (container, model) {
+var InfoFoodView = function (container, model, foodId) {
 
   this.container = container;
-  this.siteContent = container.find("#site-content");
 
   this.init = function() {
     var numberOfGuests = model.getNumberOfGuests();
     var selectedDishes = model.getFullMenu();
+    var dishes = model.getAllDishes("all", "");
 
-    var id = 3; // TODO FIXERINO
-    var displayedDish = selectedDishes[id];
+    var id = foodId;
+    var displayedDish;
+
+    for (key in dishes) {
+      if (dishes[key].id == foodId) {
+        displayedDish = dishes[key];
+        break;
+      }
+    }
+
     var imgSrc = "images/"+displayedDish.image;
     var foodName = displayedDish.name;
     var foodDesc = displayedDish.description;
-
 
     var totalMenuPrice = model.getMenuPrice(displayedDish.id);
 
     var ingredients = displayedDish.ingredients;
     var ingredientsHtml = "";
     for (key in ingredients) {
-
        var unit = ingredients[key].unit;
        var quantity = ingredients[key].quantity;
        var name = ingredients[key].name;
@@ -107,8 +113,7 @@ var InfoFoodView = function (container, model) {
   	 * Here we use @var {jQuery object} numberOfGuests that is a reference to <span>
   	 * in our view to dynamically set it's value to "Hello World".
   	 */
-
-    this.siteContent.html(html);
+    this.container.html(html);
 
   }
 

@@ -2,15 +2,24 @@
 var DinnerModel = function() {
 
   var observers=[];
+
   this.addObserver=function(observerFunc){ observers.push(observerFunc); }
 
   this.notifyObservers=function(details){
-      for(var i=0; i<observers.length; i++)
-           observers[i](this, details); // we will make sure that observers[i] is a function, so we can call it like observers[i](parameters)
+      for(key in observers) {
+           observers[key](this, details); // we will make sure that observers[i] is a function, so we can call it like observers[i](parameters)
+      }
+
   }
 
-  this.removeObserver=function(observerFunc){
-    delete observers[observerFunc];
+  this.removeObserver=function(i){
+    delete observers[i];
+  }
+
+  this.deleteObservers=function(){
+    for (key in observers) {
+      this.removeObserver(key);
+    }
   }
 
 	//TODO Lab 1 implement the data structure that will hold number of guest
@@ -20,6 +29,7 @@ var DinnerModel = function() {
 
 	this.setNumberOfGuests = function(num) {
 		numberOfGuests = num;
+    this.notifyObservers();
 	}
 
 	this.getNumberOfGuests = function() {
@@ -87,6 +97,7 @@ var DinnerModel = function() {
       }
     }
     selectedDishes.push(addDish);
+    this.notifyObservers();
 	}
 
 	//Removes dish from menu
