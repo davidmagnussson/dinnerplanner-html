@@ -6,11 +6,13 @@ var CartViewController = function(view, model ) {
   });
 
   view.container.find("#number-of-people").change(function(){
-    model.setNumberOfGuests(this.value);
+    if (this.value > 0)
+      model.setNumberOfGuests(this.value);
   });
 
   view.container.find("#number-of-people").click(function(){
-    model.setNumberOfGuests(this.value);
+    if (this.value > 0)
+      model.setNumberOfGuests(this.value);
   });
 
 }
