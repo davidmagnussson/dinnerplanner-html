@@ -14,8 +14,10 @@
  */
 var InfoFoodView = function (container, model) {
 
-
+  this.container = container;
   this.siteContent = container.find("#site-content");
+
+  this.clear = function() { this.container.html("") };
 
   this.init = function() {
     var numberOfGuests = model.getNumberOfGuests();
@@ -114,9 +116,6 @@ var InfoFoodView = function (container, model) {
 
   // Display the view when rendered.
   this.init();
-
-  // Add menu.
-  var cartView = new CartView(container, model);
 
   this.update=function(model, changeDetails){
      // redraw just the portion affected by the changeDetails

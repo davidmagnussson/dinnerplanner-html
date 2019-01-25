@@ -14,8 +14,9 @@
  */
 var OverviewView = function (container, model) {
 
-	this.viewDiv = container;
+	this.container = container;
 
+	this.clear = function() { this.container.html("") };
 
 	this.init = function() {
 		var numberOfGuests = model.getNumberOfGuests();
@@ -96,7 +97,7 @@ var OverviewView = function (container, model) {
 		 * in our view to dynamically set it's value to "Hello World".
 		 */
 
-	  this.viewDiv.html(html);
+	  this.container.html(html);
 
 	}
 

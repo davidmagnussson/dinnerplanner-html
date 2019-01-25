@@ -1,9 +1,10 @@
 //FrontPageViewController Object constructor
-var FrontPageViewController = function(view, model ) {
+var FrontPageViewController = function(view, model) {
 
- view.createDinner.click(function(){
-   console.log("CLICK!");
-   alert("CLICK");
+ view.container.find("#createDinner").click(function(){
+   signal(this.id);
+   view.clear();
  });
+
 
 }

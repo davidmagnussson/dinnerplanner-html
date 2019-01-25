@@ -14,8 +14,9 @@
  */
 var FoodView = function (container, model) {
 
-  this.showFood = container.find("#site-content");
+  this.container = container;
 
+  this.clear = function() { this.container.html("") };
 
 	this.init = function() {
 	  var selectedDishes = model.getAllDishes('starter','');
@@ -35,37 +36,38 @@ var FoodView = function (container, model) {
 	    items+=fill;
 	  }
 
-	  var html =`<div class="row form-inline">
-	      <div style="height:15vh" class="col-md-12 d-none d-md-block d-lg-block" id="filter-div">
-	          <strong>FIND A DISH</strong>
-	          <form class="row">
-	              <div class="form-group col-md-4 col-sm-4">
-	                <input placeholder="Enter key words"/>
-	              </div>
-	              <div class="form-group col-md-6 col-sm-6 row" id="food-type">
-	                <select class="form-control col-md-12">
-	                    <option>All</option>
-	                    <option>Main Course</option>
-	                    <option>Side Dish</option>
-	                    <option>Appertizer</option>
-	                    <option>...</option>
-	                </select>
-	              </div>
-	              <div class="col-md-2 col-sm-2">
-	                <button type="submit">Search</button>
-	              </div>
-	          </form>
-	      </div>
-	      <div class="col-md-12 col-sm-12" id="food-menu">
-	        <div id="food-container" class="row"> <!--Innehåller alla maträtter-->
-	            <div class="d-md-none col-sm-4 col-3"></div>
-	            <div class="col-md-12 col-sm-4 col-8 row">
-	            `+items+`
-	            </div>
-	            <div class="d-md-none col-sm-2 col-1"></div>
-	        </div>
-	      </div>
-	  </div>`;
+	  var html =`
+        <div class="row form-inline">
+    	      <div style="height:15vh" class="col-md-12 d-none d-md-block d-lg-block" id="filter-div">
+    	          <strong>FIND A DISH</strong>
+    	          <form class="row">
+    	              <div class="form-group col-md-4 col-sm-4">
+    	                <input placeholder="Enter key words"/>
+    	              </div>
+    	              <div class="form-group col-md-6 col-sm-6 row" id="food-type">
+    	                <select class="form-control col-md-12">
+    	                    <option>All</option>
+    	                    <option>Main Course</option>
+    	                    <option>Side Dish</option>
+    	                    <option>Appertizer</option>
+    	                    <option>...</option>
+    	                </select>
+    	              </div>
+    	              <div class="col-md-2 col-sm-2">
+    	                <button type="submit">Search</button>
+    	              </div>
+    	          </form>
+    	      </div>
+    	      <div class="col-md-12 col-sm-12" id="food-menu">
+    	        <div id="food-container" class="row"> <!--Innehåller alla maträtter-->
+    	            <div class="d-md-none col-sm-4 col-3"></div>
+    	            <div class="col-md-12 col-sm-4 col-8 row">
+    	            `+items+`
+    	            </div>
+    	            <div class="d-md-none col-sm-2 col-1"></div>
+    	        </div>
+    	      </div>
+    	  </div>`;
 
 
 		/**
@@ -73,12 +75,9 @@ var FoodView = function (container, model) {
 		 * in our view to dynamically set it's value to "Hello World".
 		 */
 
-	  this.showFood.html(html);
+	  this.container.html(html);
 
 	}
-
-  // Add menu
-  var cartView = new CartView(container, model);
 
 	// Display the view when rendered.
   this.init();

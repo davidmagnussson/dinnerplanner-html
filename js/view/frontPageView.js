@@ -14,10 +14,9 @@
  */
 var FrontPageView = function (container, model) {
 
-  this.viewDiv = container;
+  this.container = container;
 
-
-
+  this.clear = function() { this.container.html("") };
 
   this.init = function() {
 
@@ -29,12 +28,9 @@ var FrontPageView = function (container, model) {
         </div>
     </div>`;
 
-    this.viewDiv.html(content);
+    this.container.html(content);
 
   }
-
-  this.createDinner = container.find("#createDinner");
-    console.log(this.createDinner.innerHTML);
 
   // Display the view when rendered.
   this.init();

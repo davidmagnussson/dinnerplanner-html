@@ -14,7 +14,9 @@
  */
 var FinalView = function (container, model) {
 
-	this.viewDiv = container;
+	this.container = container;
+
+	this.clear = function() { this.container.html("") };
 
 	this.init = function() {
 		var numberOfGuests = model.getNumberOfGuests();
@@ -81,7 +83,7 @@ var FinalView = function (container, model) {
 
 						 </div>`;
 
-	  this.viewDiv.html(html);
+	  this.container.html(html);
 
 	}
 

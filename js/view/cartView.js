@@ -47,9 +47,9 @@ var CartView = function (container, model) {
 	 * this button and do something with it (see Lab 2).
 	 *
 	 */
-  this.numberOfGuests = container.find("#numberOfGuests");
-  this.addPeopleBtn = container.find("#number-of-people");
-  this.cart = container.find("#cart");
+  this.container = container;
+
+  this.clear = function() { this.container.html("") };
 
   this.init = function(){
     var guests = model.getNumberOfGuests();
@@ -66,8 +66,8 @@ var CartView = function (container, model) {
       items+=fill;
     }
 
-
-    var html =`<div id="header-in-cart" class="row">
+    var html =`
+    <div id="header-in-cart" class="row">
         <div class="col">
             <strong>My Dinner</strong>
         </div>
@@ -105,8 +105,7 @@ var CartView = function (container, model) {
         </div>
     </div>`;
 
-    this.numberOfGuests.html(model.getNumberOfGuests());
-    this.cart.html(html);
+    this.container.html(html);
   }
 
   // Display the view when rendered.
