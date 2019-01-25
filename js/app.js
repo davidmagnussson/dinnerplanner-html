@@ -52,11 +52,14 @@ $(function() {
 
 	// General State Controller:
  	signal = function(btnId){
-		if(btnId == "createDinner") {
+		if(btnId == "createDinner" || btnId == "backToSearch") {
 			showFoodView();
-		}
-		if(btnId == "search") {
-			showFrontPageView();
+		} else if(btnId == "search") {
+			showFrontPageView(); // TODO: REMOVE! Just for demonstration.
+		} else if(btnId == "confirm") {
+			showOverviewView();
+		} else if(btnId = "printRecipe"){
+			showFinalView();
 		}
 	}
 	/**

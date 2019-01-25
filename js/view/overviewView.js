@@ -55,7 +55,7 @@ var OverviewView = function (container, model) {
 		                        </div>
 		                    </div>
 		                    <div class="col-md-6 col-sm-12">
-		                        <button class="float-right">
+		                        <button id="backToSearch" class="float-right">
 		                            Go back and edit dinner
 		                        </button>
 		                    </div>
@@ -82,7 +82,7 @@ var OverviewView = function (container, model) {
 
 		                <div class="col-md-12">
 		                    <p class="text-center">
-		                        <button>Print Full Recipe</button>
+		                        <button id="printRecipe">Print Full Recipe</button>
 		                    </p>
 		                </div>
 

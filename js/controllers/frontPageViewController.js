@@ -5,5 +5,4 @@ var FrontPageViewController = function(view, model) {
    signal(this.id);
  });
 
-
 }

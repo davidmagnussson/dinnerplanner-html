@@ -2,7 +2,7 @@
 var FoodViewController = function(view, model ) {
 
   view.container.find("#search").click(function(){
-    signal(this.id);
+    signal(this.id);// TODO: REMOVE - this is just for demonstration.
   });
 
 }

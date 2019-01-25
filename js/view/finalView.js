@@ -67,7 +67,7 @@ var FinalView = function (container, model) {
 														</div>
 												</div>
 												<div class="col-md-6">
-														<button class="float-right">
+														<button id="backToSearch" class="float-right">
 																Go back and edit dinner
 														</button>
 												</div>

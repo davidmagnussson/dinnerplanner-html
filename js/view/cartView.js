@@ -98,7 +98,7 @@ var CartView = function (container, model) {
         <div id="menu-list container-fluid">
             <p class="text-right">SEK <span class="total_cost">`+menuPrice+`</span></p>
             <div class="text-center">
-                <button>Confirm Order</button>
+                <button id="confirm">Confirm Order</button>
             </div><br/>
         </div>
     </div>`;

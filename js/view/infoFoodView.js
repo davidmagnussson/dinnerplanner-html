@@ -60,7 +60,7 @@ var InfoFoodView = function (container, model) {
                         <img class="foodBigImg" src="`+imgSrc+`"/>
                         <br/>
                         <p>`+foodDesc+`</p>
-                        <button>Back To Search</button>
+                        <button id="backToSearch">Back To Search</button>
                         <br/><br/>
                     </div>
                     <div class="container-fluid col-md-6 col-sm-12">
@@ -80,7 +80,7 @@ var InfoFoodView = function (container, model) {
                                 <hr>
                                 <div class="row">
                                     <div class="col">
-                                        <button class="yellow text-left">
+                                        <button id="addToMenu" data-food-id="`+id+`" class="yellow text-left">
                                             Add to menu
                                         </button>
                                     </div>
