@@ -16,8 +16,6 @@ var FoodView = function (container, model) {
 
   this.container = container;
 
-  this.clear = function() { this.container.html("") };
-
 	this.init = function() {
 	  var selectedDishes = model.getAllDishes('starter','');
 	  var items = "";
@@ -54,7 +52,7 @@ var FoodView = function (container, model) {
     	                </select>
     	              </div>
     	              <div class="col-md-2 col-sm-2">
-    	                <button type="submit">Search</button>
+    	                <button id="search" type="submit">Search</button>
     	              </div>
     	          </form>
     	      </div>

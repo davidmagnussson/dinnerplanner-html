@@ -49,8 +49,6 @@ var CartView = function (container, model) {
 	 */
   this.container = container;
 
-  this.clear = function() { this.container.html("") };
-
   this.init = function(){
     var guests = model.getNumberOfGuests();
     var selectedDishes = model.getFullMenu();

@@ -14,7 +14,7 @@ $(function() {
 
 	// And create the instance of the default showing view
 
-	var showing, controller;
+	var template, showing, controller, subShowing, subController;
 
 	function showFrontPageView(){
 		showing = new FrontPageView($("#viewDiv"), model);
@@ -22,13 +22,19 @@ $(function() {
 	}
 
 	function showFoodView(){
-		showing = new FoodView($("#viewDiv"), model);
+		template = new PartialPageView($("#viewDiv"), model);
+		showing = new FoodView($("#site-content"), model);
 		controller = new FoodViewController(showing, model);
+		subShowing = new CartView($("#cart"), model);
+		subController = new CartViewController(showing, model);
 	}
 
 	function showInfoFoodView(){
+		template = new PartialPageView($("#viewDiv"), model);
 		showing = new InfoFoodView($("#viewDiv"), model);
 		controller = new InfoFoodViewController(showing, model);
+		subShowing = new CartView($("#cart"), model);
+		subController = new CartViewController(showing, model);
 	}
 
 	function showOverviewView(){
@@ -48,6 +54,9 @@ $(function() {
  	signal = function(btnId){
 		if(btnId == "createDinner") {
 			showFoodView();
+		}
+		if(btnId == "search") {
+			showFrontPageView();
 		}
 	}
 	/**

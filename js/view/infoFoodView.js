@@ -17,8 +17,6 @@ var InfoFoodView = function (container, model) {
   this.container = container;
   this.siteContent = container.find("#site-content");
 
-  this.clear = function() { this.container.html("") };
-
   this.init = function() {
     var numberOfGuests = model.getNumberOfGuests();
     var selectedDishes = model.getFullMenu();

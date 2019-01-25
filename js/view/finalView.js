@@ -16,8 +16,6 @@ var FinalView = function (container, model) {
 
 	this.container = container;
 
-	this.clear = function() { this.container.html("") };
-
 	this.init = function() {
 		var numberOfGuests = model.getNumberOfGuests();
 
