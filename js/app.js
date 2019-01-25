@@ -3,17 +3,6 @@ $(function() {
 	//We instantiate our model
 	var model = new DinnerModel();
 
-	// NOTE: ONLY FOR TESTING!
-	model.addDishToMenu(1);
-	model.addDishToMenu(100);
-	model.addDishToMenu(200);
-
-	model.removeDishFromMenu(100);
-	model.setNumberOfGuests(5);
-	model.addDishToMenu(101);
-
-	// And create the instance of the default showing view
-
 	var template, showing, controller, subShowing, subController;
 
 	function showFrontPageView(){
@@ -62,7 +51,10 @@ $(function() {
 		} else if(btnId = "printRecipe"){
 			showFinalView();
 		}
+			// model.getObservers();
 	}
+
+
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to
 	 * use the $('someSelector') to search for elements in the whole HTML.

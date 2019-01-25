@@ -16,13 +16,11 @@ var InfoFoodView = function (container, model, foodId) {
 
   this.container = container;
 
-  this.init = function() {
-    var numberOfGuests = model.getNumberOfGuests();
-    var selectedDishes = model.getFullMenu();
-    var dishes = model.getAllDishes("all", "");
+  var totalIngredientCost = 0;
 
-    var id = foodId;
-    var displayedDish;
+  var getDisplayedDish = function(){
+    var displayedDish = "";
+    var dishes = model.getAllDishes("all", "");
 
     for (key in dishes) {
       if (dishes[key].id == foodId) {
@@ -30,6 +28,42 @@ var InfoFoodView = function (container, model, foodId) {
         break;
       }
     }
+    return displayedDish;
+  }
+
+  var getIngredients = function(ingredients){
+    var ingredientsHtml = "";
+    for (key in ingredients) {
+       var unit = ingredients[key].unit;
+       var quantity = ingredients[key].quantity * model.getNumberOfGuests();
+       var name = ingredients[key].name;
+       var cost = ingredients[key].price * model.getNumberOfGuests();
+       totalIngredientCost += cost; // Add to total.
+
+       var itemHtml = `
+       <li class="ingredientItem col-sm-12">
+           <div class="row">
+               <div id="quantityAndUnit" class="col">`+quantity+` `+unit+`</div>
+               <div id="name" class="col">`+name+`</div>
+               <div class="col">
+                   SEK `+cost+`
+               </div>
+           </div>
+           <br>
+       </li>`;
+
+      ingredientsHtml += itemHtml;
+    }
+    return ingredientsHtml;
+  }
+
+  this.init = function() {
+    var numberOfGuests = model.getNumberOfGuests();
+    var selectedDishes = model.getFullMenu();
+
+
+    var id = foodId;
+    var displayedDish = getDisplayedDish();
 
     var imgSrc = "images/"+displayedDish.image;
     var foodName = displayedDish.name;
@@ -38,26 +72,7 @@ var InfoFoodView = function (container, model, foodId) {
     var totalMenuPrice = model.getMenuPrice(displayedDish.id);
 
     var ingredients = displayedDish.ingredients;
-    var ingredientsHtml = "";
-    for (key in ingredients) {
-       var unit = ingredients[key].unit;
-       var quantity = ingredients[key].quantity;
-       var name = ingredients[key].name;
-       var cost = ingredients[key].price * model.getNumberOfGuests();
-
-       var itemHtml = `
-       <li class="col-sm-12">
-           <div class="row">
-               <div class="col">`+quantity+` `+unit+`</div>
-               <div class="col">`+name+`</div>
-               <div class="col">
-                   SEK `+cost+`
-               </div>
-           </div>
-       </li>`;
-
-      ingredientsHtml += itemHtml;
-    }
+    var ingredientsHtml = getIngredients(ingredients);
 
     var html =
                 `<div class="row">
@@ -73,7 +88,7 @@ var InfoFoodView = function (container, model, foodId) {
                         <div id="ingredientBox" class="container-fluid col-xs-12 lightYellow text-left">
 
                             <div id="ingredients" class="col-sm-12">
-                                <p>Ingredients for <span>`+numberOfGuests+`</span> people</p>
+                                <p>Ingredients for <span id="numberOfGuests">`+numberOfGuests+`</span> people</p>
                                 <hr>
                                 <div class="col-sm-12 row">
                                 <ul id="ingredientList" class="col-sm-12">
@@ -91,7 +106,7 @@ var InfoFoodView = function (container, model, foodId) {
                                         </button>
                                     </div>
                                     <div class="col">
-                                        <p class="text-right">SEK <span>`+totalMenuPrice+`</span></p>
+                                        <p class="text-right">SEK <span id="totalMenuPrice">`+totalMenuPrice+`</span></p>
                                     </div>
                                 </div>
 
@@ -122,8 +137,14 @@ var InfoFoodView = function (container, model, foodId) {
 
   this.update=function(model, changeDetails){
      // redraw just the portion affected by the changeDetails
-     // or remove all graphics in the view, read the whole model and redraw
-     this.init();
+     totalIngredientCost = 0;
+     var displayedDish = getDisplayedDish();
+     var ingredients = getIngredients(displayedDish.ingredients);
+
+     container.find("#ingredientList").html(ingredients);
+     container.find("#numberOfGuests").text(model.getNumberOfGuests());
+     container.find("#totalMenuPrice").text(totalIngredientCost);
+
 	}
 	model.addObserver(this.update);
 }

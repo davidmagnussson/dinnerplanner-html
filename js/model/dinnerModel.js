@@ -3,13 +3,18 @@ var DinnerModel = function() {
 
   var observers=[];
 
+  this.getObservers=function(){
+    for(key in observers) {
+       console.log(observers[key]); // we will make sure that observers[i] is a function, so we can call it like observers[i](parameters)
+     }
+  }
+
   this.addObserver=function(observerFunc){ observers.push(observerFunc); }
 
   this.notifyObservers=function(details){
       for(key in observers) {
            observers[key](this, details); // we will make sure that observers[i] is a function, so we can call it like observers[i](parameters)
       }
-
   }
 
   this.removeObserver=function(i){

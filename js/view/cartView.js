@@ -49,21 +49,31 @@ var CartView = function (container, model) {
 	 */
   this.container = container;
 
-  this.init = function(){
-    var guests = model.getNumberOfGuests();
-    var selectedDishes = model.getFullMenu();
-    var menuPrice = model.getTotalMenuPrice();
-    var items = "";
+  var getItemHtml = function(foodId,foodName,foodCost) {
+    var fill = `<div class="cart-item row text-center">
+        <p class="foodName text-left col" id="`+foodId+`">`+foodName+`</p>
+        <p class="foodCostElement text-right" id="`+foodId+`">`+foodCost+`</p>
+        </div>`;
+    return fill;
+  }
+
+  var getItems = function(selectedDishes) {
+    items = "";
     for(key in selectedDishes){
       var foodName = selectedDishes[key].name;
       var foodId = selectedDishes[key].id;
       var foodCost = model.getMenuPrice(foodId);
-      var fill = `<div class="cart-item row text-center">
-          <p id="foodName" class="text-left col">`+foodName+`</p>
-          <p class="foodCostElement text-right" id="`+foodId+`">`+foodCost+`</p>
-          </div>`;
+      var fill = getItemHtml(foodId, foodName, foodCost);
       items+=fill;
     }
+    return items;
+  }
+
+  this.init = function(){
+    var guests = model.getNumberOfGuests();
+    var selectedDishes = model.getFullMenu();
+    var menuPrice = model.getTotalMenuPrice();
+    var items = getItems(selectedDishes);
 
     var html =`
     <div id="header-in-cart" class="row">
@@ -92,7 +102,7 @@ var CartView = function (container, model) {
             </div>
         </div>
 
-        <div class="container-fluid"> <!--Detta är det som skiljer prototypbild 2 och 4-->
+        <div id="items" class="container-fluid"> <!--Detta är det som skiljer prototypbild 2 och 4-->
           `+items+`
         </div>
 
@@ -115,10 +125,21 @@ var CartView = function (container, model) {
 	 * in our view to dynamically set it's value to "Hello World".
 	 */
   this.update=function(model, changeDetails){
+
      // redraw just the portion affected by the changeDetails
-     container.find(".foodCostElement").each(function(index,element){
-       this.innerHTML = model.getMenuPrice(element.id);
-     })
+     var selectedDishes = model.getFullMenu();
+     var items = getItems(selectedDishes);
+     container.find("#items").html(items);
+
+     // NOTE: DEPRICATED. REMOVE.
+     // container.find(".foodCostElement").each(function(index,element){
+     //   this.innerHTML = model.getMenuPrice(element.id);
+     // })
+     //
+     // container.find(".foodName").each(function(index,element){
+     //   this.innerHTML = model.getDish(element.id).name;
+     // })
+
      container.find(".total_cost").text(model.getTotalMenuPrice());
 	}
 	model.addObserver(this.update);

@@ -6,7 +6,8 @@ var InfoFoodViewController = function(view, model ) {
   });
 
   view.container.find("#addToMenu").click(function(){
-    model.addDishToMenu(this.data("food-id"));
+    var id = this.getAttribute("data-food-id");
+    model.addDishToMenu(id);
   });
 
 }

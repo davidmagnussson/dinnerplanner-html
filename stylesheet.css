@@ -75,13 +75,13 @@ button {
 
 /* Ingredient Box*/
 #ingredientBox {
-    height: 75vh!important;
+    min-height: 75vh!important;
     padding-top: 15px;
     padding-bottom:15px;
 }
 
 #ingredients {
-    height: 60vh!important;
+    min-height: 60vh!important;
 }
 
 #ingredientSummary {
@@ -162,7 +162,7 @@ button {
     margin: 20px;
 }
 
-#mealsCenterDiv .food-image .text-right {
+#mealsCenterDiv .food-imagxe .text-right {
     margin-top: 10px;
 }
 
