@@ -26,15 +26,15 @@ $(function() {
 		showing = new FoodView($("#site-content"), model);
 		controller = new FoodViewController(showing, model);
 		subShowing = new CartView($("#cart"), model);
-		subController = new CartViewController(showing, model);
+		subController = new CartViewController(subShowing, model);
 	}
 
 	function showInfoFoodView(){
 		template = new PartialPageView($("#viewDiv"), model);
-		showing = new InfoFoodView($("#viewDiv"), model);
+		showing = new InfoFoodView($("#site-content"), model);
 		controller = new InfoFoodViewController(showing, model);
 		subShowing = new CartView($("#cart"), model);
-		subController = new CartViewController(showing, model);
+		subController = new CartViewController(subShowing, model);
 	}
 
 	function showOverviewView(){

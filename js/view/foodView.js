@@ -17,7 +17,7 @@ var FoodView = function (container, model) {
   this.container = container;
 
 	this.init = function() {
-	  var selectedDishes = model.getAllDishes('starter','');
+	  var selectedDishes = model.getAllDishes('all','');
 	  var items = "";
 	  for(key in selectedDishes){
 	    var foodID = selectedDishes[key].id;

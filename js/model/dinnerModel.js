@@ -116,7 +116,12 @@ var DinnerModel = function() {
 				found = true;
 			}
 		}
-	  	return dish.type == type && found;
+      // TEMPORARY: DO WE NEED THESE IF-STATEMENTS?
+      if (type != "all") {
+        return dish.type == type && found;
+      } else {
+        return dish.type && found;
+      }
 	  });
 	}
 

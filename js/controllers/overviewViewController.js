@@ -1,11 +1,11 @@
 //OverviewViewController Object constructor
 var OverviewViewController = function(view, model ) {
 
-  view.container.find("#backToSearch").click(()=>{
+  view.container.find("#backToSearch").click(function(){
     signal(this.id);
   });
 
-  view.container.find("#printRecipe").click(()=>{
+  view.container.find("#printRecipe").click(function(){
     signal(this.id);
   });
 
