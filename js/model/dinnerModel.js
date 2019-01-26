@@ -1,13 +1,8 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
 
+  const API_KEY = "ybMhpBljfzmsh5nwCSSVPWr2bLXwp1OhGnvjsn2NMyw55rKXKh";
   var observers=[];
-
-  this.getObservers=function(){
-    for(key in observers) {
-       console.log(observers[key]); // we will make sure that observers[i] is a function, so we can call it like observers[i](parameters)
-     }
-  }
 
   this.addObserver=function(observerFunc){ observers.push(observerFunc); }
 
@@ -141,14 +136,29 @@ var DinnerModel = function() {
 	  });
 	}
 
+  var getDishCallback = function(data){
+    console.log(data);
+  }
+
+  var getDishErrorCallback = function(err){
+    console.log(err);
+  }
+
 	//function that returns a dish of specific ID
 	this.getDish = function (id) {
-	  for(key in dishes){
-			if(dishes[key].id == id) {
-				return dishes[key];
-			}
-		}
-	}
+    $.ajax( {
+     url: "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/menuItems/"+id,
+     headers: {
+       'X-Mashape-Key': API_KEY
+     },
+     success: function(data) {
+       getDishCallback(data)
+     },
+     error: function(error) {
+       getDishErrorCallback(error)
+     }
+   });
+  }
 
 
 	// the dishes variable contains an array of all the

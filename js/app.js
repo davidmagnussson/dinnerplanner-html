@@ -51,9 +51,10 @@ $(function() {
 		} else if(btnId = "printRecipe"){
 			showFinalView();
 		}
-			// model.getObservers();
 	}
 
+	// NOTE: ONLY TO TEST API KEY!!!
+	//model.getDish("228234");
 
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to
