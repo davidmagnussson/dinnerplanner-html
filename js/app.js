@@ -1,4 +1,4 @@
-var signal;
+var signal, refreshControllers;
 $(function() {
 	//We instantiate our model
 	var model = new DinnerModel();
@@ -34,6 +34,10 @@ $(function() {
 	function showFinalView(){
 		showing = new FinalView($("#viewDiv"), model);
 		controller = new FinalViewController(showing, model);
+	}
+
+	refreshControllers = function(){
+		controller = new FoodViewController(showing, model);
 	}
 
 	// Init frontpage:

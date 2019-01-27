@@ -2,6 +2,7 @@
 var FoodViewController = function(view, model ) {
 
   view.container.find("#search").click(function(){
+    refreshControllers();
     var filter = view.container.find("#filter").val();
     var type = view.container.find("#type").find(":selected").val();
     model.setShowDishes(type, filter);
@@ -12,8 +13,7 @@ var FoodViewController = function(view, model ) {
   });
 
   view.container.find("#filterForm").submit(function(event){  // A function to prevent that we submit the form!
+    refreshControllers();
     event.preventDefault();
-
   })
-
 }
