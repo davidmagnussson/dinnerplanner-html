@@ -2,17 +2,18 @@
 var FoodViewController = function(view, model ) {
 
   view.container.find("#search").click(function(){
-    var filter = view.container.find("#filter").val();  //Får man använda sig av jquery funktioner? .text fungerade ej men detta fungerar
-    var type = view.container.find("#type").find(":selected").text();  // Även detta är jquery, häääällllooooh
-    // alert(filter.length+" "+type.length);
-    // console.log(filter);
-    
-    // model.setShowDishes(type, filter);  //Detta fungerar inte då att jag inte lyckas hämta this.getAllDishes() i dinnermodel.
-    signal(this.id);// TODO: REMOVE - this is just for demonstration.
+    var filter = view.container.find("#filter").val();
+    var type = view.container.find("#type").find(":selected").val();
+    model.setShowDishes(type, filter);
   });
 
   view.container.find(".food-image").click(function(){
     signal(this.className, this.id);
   });
+
+  view.container.find("#filterForm").submit(function(event){  // A function to prevent that we submit the form!
+    event.preventDefault();
+
+  })
 
 }
