@@ -42,13 +42,13 @@ $(function() {
 	// General State Controller:
  	signal = function(btnId, details = ""){
 		model.deleteObservers();
-		if(btnId == "createDinner" || btnId == "backToSearch") {
+		if(btnId == "createDinner" || btnId == "backToSearch" || btnId == "search") {
 			showFoodView();
 		} else if(btnId == "food-image") {
 			showInfoFoodView(details);
 		} else if(btnId == "confirm") {
 			showOverviewView();
-		} else if(btnId = "printRecipe"){
+		} else if(btnId == "printRecipe"){
 			showFinalView();
 		}
 			// model.getObservers();

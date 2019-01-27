@@ -17,7 +17,8 @@ var FoodView = function (container, model) {
   this.container = container;
 
 	this.init = function() {
-	  var selectedDishes = model.getAllDishes('all','');
+	  var selectedDishes = model.getAllDishes('all','');  // Vill ersätta detta med model.getShowDishes();
+    console.log(typeof selectedDishes);
 	  var items = "";
 	  for(key in selectedDishes){
 	    var foodID = selectedDishes[key].id;
@@ -38,17 +39,16 @@ var FoodView = function (container, model) {
         <div class="row form-inline">
     	      <div style="height:15vh" class="col-md-12 d-none d-md-block d-lg-block" id="filter-div">
     	          <strong>FIND A DISH</strong>
-    	          <form class="row">
+    	          <form class="row" action="#">
     	              <div class="form-group col-md-4 col-sm-4">
-    	                <input placeholder="Enter key words"/>
+    	                <input name="filter" id="filter" type="text" placeholder="Enter key words"/>
     	              </div>
     	              <div class="form-group col-md-6 col-sm-6 row" id="food-type">
-    	                <select class="form-control col-md-12">
-    	                    <option>All</option>
-    	                    <option>Main Course</option>
-    	                    <option>Side Dish</option>
-    	                    <option>Appertizer</option>
-    	                    <option>...</option>
+    	                <select class="form-control col-md-12" id="type">
+    	                    <option value="all" selected>All</option>
+    	                    <option value="main dish">Main Course</option>
+    	                    <option value="side dish">Side Dish</option>
+    	                    <option value="starter">Starter</option>
     	                </select>
     	              </div>
     	              <div class="col-md-2 col-sm-2">

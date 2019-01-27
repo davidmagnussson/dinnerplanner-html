@@ -31,6 +31,22 @@ var DinnerModel = function() {
 	// and selected dishes for the dinner menu
   var numberOfGuests = 3;
   var selectedDishes = [];
+  // var showDishes;
+
+  /* Koden nedan är menad för att ersätta vad som visas i foodView, alltså vilka rätter.
+     Detta genom att man uppdaterar variabler showDishes (se rad 34) mha setShowDishes. Sedan kan man
+     i foodView hämta variabeln mha getShowDishes. PROBLEMET JUST NU: RAD 170 FUNGERAR INTE, HUR HÄMTAR jag
+     getAllDishes här "innifrån"*/
+  this.setShowDishes = function(type, filter){
+    showDishes = this.getAllDishes(type, filter);  // Man hämtar alltså de aktuella rätterna som ska visas från getAllDishes. setShowDishes sätts från foodViewController när man trycker på knappen "search" på foodView.
+    this.notifyObservers;
+  }
+
+  this.getShowDishes = function(){
+    return showDishes;
+  }
+
+  // ----------------------------------------------
 
 	this.setNumberOfGuests = function(num) {
 		numberOfGuests = num;
@@ -132,7 +148,7 @@ var DinnerModel = function() {
 				found = true;
 			}
 		}
-      // TEMPORARY: DO WE NEED THESE IF-STATEMENTS?
+      // TEMPORARY: DO WE NEED THESE IF-STATEMENTS? SELF IMPLEMENTED
       if (type != "all") {
         return dish.type == type && found;
       } else {
@@ -149,6 +165,8 @@ var DinnerModel = function() {
 			}
 		}
 	}
+
+  // var showDishes = this.getAllDishes('all', ''); // Denna rad fungerar ej? Denna raden ska vara "Default", alltså första gången foodView visas ska allt visas.
 
 
 	// the dishes variable contains an array of all the
