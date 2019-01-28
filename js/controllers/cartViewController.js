@@ -8,11 +8,13 @@ var CartViewController = function(view, model ) {
   view.container.find("#number-of-people").change(function(){
     if (this.value > 0)
       model.setNumberOfGuests(this.value);
+      refreshControllers();
   });
 
   view.container.find("#number-of-people").click(function(){
     if (this.value > 0)
       model.setNumberOfGuests(this.value);
+      refreshControllers();
   });
 
 }
