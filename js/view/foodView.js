@@ -1,17 +1,3 @@
-/** ExampleView Object constructor
- *
- * This object represents the code for one specific view (in this case the Example view).
- *
- * It is responsible for:
- * - constructing the view (e.g. if you need to create some HTML elements procedurally)
- * - populating the view with the data
- * - updating the view when the data changes
- *
- * You should create a view Object like this for every view in your UI.
- *
- * @param {jQuery object} container - references the HTML parent element that contains the view.
- * @param {Object} model - the reference to the Dinner Model
- */
 var FoodView = function (container, model) {
 
   this.container = container;
@@ -22,12 +8,12 @@ var FoodView = function (container, model) {
 	    var foodID = selectedDishes[key].id;
 	    var foodName = selectedDishes[key].name;
 	    var imgSrc = selectedDishes[key].image;
-	    var fill = `<div class="food-image" id="`+foodID+`">
+	    var fill = `<div class="food-image" id="${foodID}">
 	                    <div>
-	                        <img src="images/`+imgSrc+`"/>
+	                        <img src="images/${imgSrc}"/>
 	                    </div>
 	                    <div id="food-name">
-	                        <p>`+foodName+`</p>
+	                        <p>${foodName}</p>
 	                    </div>
 	                </div>`;
 	    items+=fill;
@@ -68,18 +54,12 @@ var FoodView = function (container, model) {
     	        <div id="food-container" class="row"> <!--Innehåller alla maträtter-->
     	            <div class="d-md-none col-sm-4 col-3"></div>
     	            <div class="col-md-12 col-sm-4 col-8 row" id="itemDiv">
-    	            `+items+`
+    	            ${items}
     	            </div>
     	            <div class="d-md-none col-sm-2 col-1"></div>
     	        </div>
     	      </div>
     	  </div>`;
-
-
-		/**
-		 * Here we use @var {jQuery object} numberOfGuests that is a reference to <span>
-		 * in our view to dynamically set it's value to "Hello World".
-		 */
 
 	  this.container.html(html);
 

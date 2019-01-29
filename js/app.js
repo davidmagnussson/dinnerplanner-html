@@ -59,7 +59,7 @@ $(function() {
 	// General State Controller:
  	signal = function(btnId, details = ""){
 		model.deleteObservers();
-		if(btnId == "createDinner" || btnId == "backToSearch") {
+		if(btnId == "createDinner" || btnId == "backToSearch" ) {
 			showFoodView();
 		} else if(btnId == "food-image") {
 			showInfoFoodView(details);

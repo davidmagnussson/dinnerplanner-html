@@ -1,17 +1,3 @@
-/** ExampleView Object constructor
- *
- * This object represents the code for one specific view (in this case the Example view).
- *
- * It is responsible for:
- * - constructing the view (e.g. if you need to create some HTML elements procedurally)
- * - populating the view with the data
- * - updating the view when the data changes
- *
- * You should create a view Object like this for every view in your UI.
- *
- * @param {jQuery object} container - references the HTML parent element that contains the view.
- * @param {Object} model - the reference to the Dinner Model
- */
 var FrontPageView = function (container, model) {
 
   this.container = container;
@@ -34,8 +20,6 @@ var FrontPageView = function (container, model) {
   this.init();
 
   this.update=function(model, changeDetails){
-     // redraw just the portion affected by the changeDetails
-     // or remove all graphics in the view, read the whole model and redraw
      this.init();
 	}
 	model.addObserver(this.update);
