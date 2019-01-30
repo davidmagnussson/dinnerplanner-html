@@ -1,17 +1,3 @@
-/** ExampleView Object constructor
- *
- * This object represents the code for one specific view (in this case the Example view).
- *
- * It is responsible for:
- * - constructing the view (e.g. if you need to create some HTML elements procedurally)
- * - populating the view with the data
- * - updating the view when the data changes
- *
- * You should create a view Object like this for every view in your UI.
- *
- * @param {jQuery object} container - references the HTML parent element that contains the view.
- * @param {Object} model - the reference to the Dinner Model
- */
 var InfoFoodView = function (container, model, foodId) {
 
   this.container = container;
@@ -43,10 +29,10 @@ var InfoFoodView = function (container, model, foodId) {
        var itemHtml = `
        <li class="ingredientItem col-sm-12">
            <div class="row">
-               <div id="quantityAndUnit" class="col">`+quantity+` `+unit+`</div>
-               <div id="name" class="col">`+name+`</div>
+               <div id="quantityAndUnit" class="col">${quantity} ${unit}</div>
+               <div id="name" class="col">${name}</div>
                <div class="col">
-                   SEK `+cost+`
+                   SEK ${cost}
                </div>
            </div>
            <br>
@@ -77,10 +63,10 @@ var InfoFoodView = function (container, model, foodId) {
     var html =
                 `<div class="row">
                     <div class="container col-md-6 padTop col-sm-12">
-                        <h3>`+foodName+`</h3>
-                        <img class="foodBigImg" src="`+imgSrc+`"/>
+                        <h3>${foodName}</h3>
+                        <img class="foodBigImg" src="${imgSrc}"/>
                         <br/>
-                        <p>`+foodDesc+`</p>
+                        <p>${foodDesc}</p>
                         <button id="backToSearch">Back To Search</button>
                         <br/><br/>
                     </div>
@@ -88,11 +74,11 @@ var InfoFoodView = function (container, model, foodId) {
                         <div id="ingredientBox" class="container-fluid col-xs-12 lightYellow text-left">
 
                             <div id="ingredients" class="col-sm-12">
-                                <p>Ingredients for <span id="numberOfGuests">`+numberOfGuests+`</span> people</p>
+                                <p>Ingredients for <span id="numberOfGuests">${numberOfGuests}</span> people</p>
                                 <hr>
                                 <div class="col-sm-12 row">
                                 <ul id="ingredientList" class="col-sm-12">
-                                    `+ingredientsHtml+`
+                                    ${ingredientsHtml}
                                 </ul>
                                 </div>
                             </div>
@@ -101,12 +87,12 @@ var InfoFoodView = function (container, model, foodId) {
                                 <hr>
                                 <div class="row">
                                     <div class="col">
-                                        <button id="addToMenu" data-food-id="`+id+`" class="yellow text-left">
+                                        <button id="addToMenu" data-food-id="${id}" class="yellow text-left">
                                             Add to menu
                                         </button>
                                     </div>
                                     <div class="col">
-                                        <p class="text-right">SEK <span id="totalMenuPrice">`+totalMenuPrice+`</span></p>
+                                        <p class="text-right">SEK <span id="totalMenuPrice">${totalMenuPrice}</span></p>
                                     </div>
                                 </div>
 
@@ -124,10 +110,6 @@ var InfoFoodView = function (container, model, foodId) {
 
                 </div>`;
 
-  	/**
-  	 * Here we use @var {jQuery object} numberOfGuests that is a reference to <span>
-  	 * in our view to dynamically set it's value to "Hello World".
-  	 */
     this.container.html(html);
 
   }

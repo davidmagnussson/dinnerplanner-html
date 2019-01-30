@@ -1,17 +1,28 @@
-var signal;
+var signal, refreshControllers;
 $(function() {
 	//We instantiate our model
 	var model = new DinnerModel();
 
 	var template, showing, controller, subShowing, subController;
 
+	function hideFullPage(yes){
+		if (yes) {
+			$("#fullPage").hide();
+			$("#partialPage").show();
+		} else {
+			$("#partialPage").hide();
+			$("#fullPage").show();
+		}
+	}
+
 	function showFrontPageView(){
-		showing = new FrontPageView($("#viewDiv"), model);
+		hideFullPage(false);
+		showing = new FrontPageView($("#fullPage"), model);
 		controller = new FrontPageViewController(showing, model);
 	}
 
 	function showFoodView(){
-		template = new PartialPageView($("#viewDiv"), model);
+		hideFullPage(true);
 		showing = new FoodView($("#site-content"), model);
 		controller = new FoodViewController(showing, model);
 		subShowing = new CartView($("#cart"), model);
@@ -19,7 +30,7 @@ $(function() {
 	}
 
 	function showInfoFoodView(id){
-		template = new PartialPageView($("#viewDiv"), model);
+		hideFullPage(true);
 		showing = new InfoFoodView($("#site-content"), model, id);
 		controller = new InfoFoodViewController(showing, model);
 		subShowing = new CartView($("#cart"), model);
@@ -27,13 +38,19 @@ $(function() {
 	}
 
 	function showOverviewView(){
-		showing = new OverviewView($("#viewDiv"), model);
+		hideFullPage(false);
+		showing = new OverviewView($("#fullPage"), model);
 		controller = new OverviewViewController(showing, model);
 	}
 
 	function showFinalView(){
-		showing = new FinalView($("#viewDiv"), model);
+		hideFullPage(false);
+		showing = new FinalView($("#fullPage"), model);
 		controller = new FinalViewController(showing, model);
+	}
+
+	refreshControllers = function(){
+		controller = new FoodViewController(showing, model);
 	}
 
 	// Init frontpage:
@@ -42,13 +59,13 @@ $(function() {
 	// General State Controller:
  	signal = function(btnId, details = ""){
 		model.deleteObservers();
-		if(btnId == "createDinner" || btnId == "backToSearch") {
+		if(btnId == "createDinner" || btnId == "backToSearch" ) {
 			showFoodView();
 		} else if(btnId == "food-image") {
 			showInfoFoodView(details);
 		} else if(btnId == "confirm") {
 			showOverviewView();
-		} else if(btnId = "printRecipe"){
+		} else if(btnId == "printRecipe"){
 			showFinalView();
 		}
 	}

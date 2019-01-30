@@ -21,11 +21,19 @@ var DinnerModel = function() {
       this.removeObserver(key);
     }
   }
-
-	//TODO Lab 1 implement the data structure that will hold number of guest
-	// and selected dishes for the dinner menu
+  
   var numberOfGuests = 3;
   var selectedDishes = [];
+  var showDishes = [];
+
+  this.setShowDishes = function(type, filter){
+    showDishes = this.getAllDishes(type, filter);
+    this.notifyObservers();
+  }
+
+  this.getShowDishes = function(){
+    return showDishes;
+  }
 
 	this.setNumberOfGuests = function(num) {
 		numberOfGuests = num;
@@ -127,7 +135,7 @@ var DinnerModel = function() {
 				found = true;
 			}
 		}
-      // TEMPORARY: DO WE NEED THESE IF-STATEMENTS?
+      // TEMPORARY: DO WE NEED THESE IF-STATEMENTS? SELF IMPLEMENTED
       if (type != "all") {
         return dish.type == type && found;
       } else {
@@ -411,5 +419,5 @@ var DinnerModel = function() {
 			}]
 		}
 	];
-
+    showDishes = this.getAllDishes('all', '');
 }
