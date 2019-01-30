@@ -2,15 +2,22 @@ var FoodView = function (container, model) {
 
   this.container = container;
 
-  var getFoodItems = function(selectedDishes){
+  const menuTypes = ["main course", "side dish", "dessert", "appetizer", "salad", "bread", "breakfast", "soup", "beverage", "sauce", "drink"];
+
+  var getFoodItems = function(allDishes){
     var items = "";
-	  for(key in selectedDishes){
-	    var foodID = selectedDishes[key].id;
-	    var foodName = selectedDishes[key].name;
-	    var imgSrc = selectedDishes[key].image;
+	  for(key in allDishes){
+	    var foodID = allDishes[key].id;
+	    var foodName = allDishes[key].title;
+      var imgSrc;
+      if (!allDishes[key].image) {
+        imgSrc = "images/default.jpg";
+      } else {
+	      imgSrc = allDishes[key].image;
+      }
 	    var fill = `<div class="food-image" id="${foodID}">
 	                    <div>
-	                        <img src="images/${imgSrc}"/>
+	                        <img src="${imgSrc}"/>
 	                    </div>
 	                    <div id="food-name">
 	                        <p>${foodName}</p>
@@ -21,14 +28,15 @@ var FoodView = function (container, model) {
     return items;
   }
 	this.init = function() {
-	  var selectedDishes = model.getShowDishes();
-    var allSelected = "selected";
-    var dessertSelected = "false";
-    var starterSelected = "false";
-    var mainSelected = "false";
 
-	  var items = getFoodItems(selectedDishes);
+    // Promise to fill items
+	  model.getShowDishes().then(data => {
+      var allDishes = data;
+      var items = getFoodItems(allDishes);
+      container.find("#itemDiv").html(items);
+    })
 
+	  // Fill rest for now.
 	  var html =`
         <div class="row form-inline">
     	      <div style="height:15vh" class="col-md-12 d-none d-md-block d-lg-block" id="filter-div">
@@ -39,10 +47,17 @@ var FoodView = function (container, model) {
     	              </div>
     	              <div class="form-group col-md-6 col-sm-6 row" id="food-type">
     	                <select class="form-control col-md-12" id="type">
-    	                    <option value="all">All</option>
-    	                    <option value="main dish">Main Course</option>
-    	                    <option value="starter">Starter</option>
+    	                    <option value="main course">Main Course</option>
+    	                    <option value="side dish">Side Dish</option>
+    	                    <option value="appetizer">Appetizer</option>
                           <option value="dessert">Dessert</option>
+                          <option value="salad">Salad</option>
+                          <option value="bread">Bread</option>
+                          <option value="breakfast">Breakfast</option>
+                          <option value="soup">Soup</option>
+                          <option value="beverage">Beverage</option>
+                          <option value="sauce">Sauce</option>
+                          <option value="drink">Drink</option>
     	                </select>
     	              </div>
     	              <div class="col-md-2 col-sm-2">
@@ -54,7 +69,7 @@ var FoodView = function (container, model) {
     	        <div id="food-container" class="row"> <!--Innehåller alla maträtter-->
     	            <div class="d-md-none col-sm-4 col-3"></div>
     	            <div class="col-md-12 col-sm-4 col-8 row" id="itemDiv">
-    	            ${items}
+    	             <h1 class="fas fa-pizza-slice fa-spin text-center"></h1>
     	            </div>
     	            <div class="d-md-none col-sm-2 col-1"></div>
     	        </div>
@@ -69,8 +84,11 @@ var FoodView = function (container, model) {
   this.init();
 
 	this.update=function(model, changeDetails){
-     var showDishes = model.getShowDishes();
-     container.find("#itemDiv").html(getFoodItems(showDishes));
+     var showDishes = model.getShowDishes().then(data => {
+       var items = getFoodItems(data);
+       container.find("#itemDiv").html(items);
+     });
+     container.find("#itemDiv").html('<h1 class="fas fa-pizza-slice fa-spin text-center"></h1>');
 	}
 	model.addObserver(this.update);
 }

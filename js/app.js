@@ -71,7 +71,7 @@ $(function() {
 	}
 
 	// NOTE: ONLY TO TEST API KEY!!!
-	//model.getDish("228234");
+	// model.getAllDishes("","all").then(data => {console.log(data);});
 
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to

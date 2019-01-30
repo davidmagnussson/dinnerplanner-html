@@ -184,3 +184,8 @@ button {
 #food-cost{
   margin-right:5px;
 }
+
+.fa-pizza-slice {
+  font-size: 8em;
+  color: #ff8533;
+}
