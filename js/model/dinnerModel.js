@@ -136,28 +136,28 @@ var DinnerModel = function() {
 	  });
 	}
 
-  var getDishCallback = function(data){
-    console.log(data);
-  }
-
-  var getDishErrorCallback = function(err){
-    console.log(err);
-  }
-
 	//function that returns a dish of specific ID
 	this.getDish = function (id) {
-    $.ajax( {
-     url: "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/menuItems/"+id,
-     headers: {
-       'X-Mashape-Key': API_KEY
-     },
-     success: function(data) {
-       getDishCallback(data)
-     },
-     error: function(error) {
-       getDishErrorCallback(error)
-     }
-   });
+
+  fetch("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/menuItems/"+id,{ 
+              headers:{
+                  'X-Mashape-Key': API_KEY
+              }
+        }).then(response => response.json())
+          .then(data => data.dishes)
+
+   //  $.ajax( {
+   //   url: ,
+   //   headers: {
+   //     'X-Mashape-Key': API_KEY
+   //   },
+   //   success: function(data) {
+   //     getDishCallback(data)
+   //   },
+   //   error: function(error) {
+   //     getDishErrorCallback(error)
+   //   }
+   // });
   }
 
 
