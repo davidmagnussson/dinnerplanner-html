@@ -3,7 +3,7 @@ $(function() {
 	//We instantiate our model
 	var model = new DinnerModel();
 
-	var template, showing, controller, subShowing, subController;
+	var template, showing, subShowing;
 
 	function hideFullPage(yes){
 		if (yes) {
@@ -18,39 +18,43 @@ $(function() {
 	function showFrontPageView(){
 		hideFullPage(false);
 		showing = new FrontPageView($("#fullPage"), model);
-		controller = new FrontPageViewController(showing, model);
+		new FrontPageViewController(showing, model);
 	}
 
 	function showFoodView(){
 		hideFullPage(true);
 		showing = new FoodView($("#site-content"), model);
-		controller = new FoodViewController(showing, model);
+		new FoodViewController(showing, model);
 		subShowing = new CartView($("#cart"), model);
-		subController = new CartViewController(subShowing, model);
+		new CartViewController(subShowing, model);
 	}
 
 	function showInfoFoodView(id){
 		hideFullPage(true);
 		showing = new InfoFoodView($("#site-content"), model, id);
-		controller = new InfoFoodViewController(showing, model);
+		new InfoFoodViewController(showing, model);
 		subShowing = new CartView($("#cart"), model);
-		subController = new CartViewController(subShowing, model);
+		new CartViewController(subShowing, model);
 	}
 
 	function showOverviewView(){
 		hideFullPage(false);
 		showing = new OverviewView($("#fullPage"), model);
-		controller = new OverviewViewController(showing, model);
+		new OverviewViewController(showing, model);
 	}
 
 	function showFinalView(){
 		hideFullPage(false);
 		showing = new FinalView($("#fullPage"), model);
-		controller = new FinalViewController(showing, model);
+		new FinalViewController(showing, model);
 	}
 
 	refreshControllers = function(){
-		controller = new FoodViewController(showing, model);
+		new FrontPageViewController(showing, model);
+		new FoodViewController(showing, model);
+		new InfoFoodViewController(showing, model);
+		new OverviewViewController(showing, model);
+		new FinalViewController(showing, model);
 	}
 
 	// Init frontpage:
@@ -69,9 +73,6 @@ $(function() {
 			showFinalView();
 		}
 	}
-
-	// NOTE: ONLY TO TEST API KEY!!!
-	// model.getAllDishes("","all").then(data => {console.log(data);});
 
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to

@@ -13,9 +13,9 @@ var CartView = function (container, model) {
   var getItems = function(selectedDishes) {
     items = "";
     for(key in selectedDishes){
-      var foodName = selectedDishes[key].name;
+      var foodName = selectedDishes[key].title;
       var foodId = selectedDishes[key].id;
-      var foodCost = model.getMenuPrice(foodId);
+      var foodCost = model.getMenuPrice(selectedDishes[key].pricePerServing);
       var fill = getItemHtml(foodId, foodName, foodCost);
       items+=fill;
     }
@@ -34,7 +34,7 @@ var CartView = function (container, model) {
             <strong>My Dinner</strong>
         </div>
         <div class="d-block d-md-none">
-            <strong><span class="total_cost">SEK ${menuPrice}</span></strong>
+            <strong><span class="total_cost">USD ${menuPrice}</span></strong>
             <button data-toggle="collapse" data-target="#on-mobile-collapse" type="button" id="menu-button" id="menu-button">
                 <i class="fas fa-bars"></i>
             </button>
@@ -60,7 +60,7 @@ var CartView = function (container, model) {
         </div>
 
         <div id="menu-list container-fluid">
-            <p class="text-right">SEK <span class="total_cost">${menuPrice}</span></p>
+            <p class="text-right">USD <span class="total_cost">${menuPrice}</span></p>
             <div class="text-center">
                 <button id="confirm">Confirm Order</button>
             </div><br/>

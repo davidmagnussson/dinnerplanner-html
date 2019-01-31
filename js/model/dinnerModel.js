@@ -64,8 +64,8 @@ var DinnerModel = function() {
 	this.getAllIngredients = function() {
 		var allIngredients = [];
     for(key in selectedDishes){
-      for (keyIn in selectedDishes[key].ingredients) {
-        var ingredient = selectedDishes[key].ingredients[keyIn];
+      for (keyIn in selectedDishes[key].extendedIngredients) {
+        var ingredient = selectedDishes[key].extendedIngredients[keyIn];
         // if(!allIngredients.includes(ingredient)) {
            allIngredients.push(ingredient);
         // }
@@ -75,37 +75,31 @@ var DinnerModel = function() {
 	}
 
   //Returns the price of a menu item (all the ingredients for this dish multiplied by number of guests).
-  this.getMenuPrice = function(id) {
-    var sum = 0;
-    var dish = this.getDish(id);
-    var ingredients = dish.ingredients;
-    for (key in ingredients) {
-      sum += ingredients[key].price;
-    }
-    return sum * this.getNumberOfGuests();
+  this.getMenuPrice = function(price) {
+    return Math.round(price * this.getNumberOfGuests());
   }
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
     var sum = 0;
-    var ingredients = this.getAllIngredients();
-    for(key in ingredients){
-      sum += ingredients[key].price;
+    for(key in selectedDishes){
+      sum += selectedDishes[key].pricePerServing;
     }
-    return sum * this.getNumberOfGuests();
+    return Math.round(sum * this.getNumberOfGuests());
 	}
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
-    var addDish = this.getDish(id);
-    for(key in selectedDishes){
-      if (selectedDishes[key].type == addDish.type) {
-        this.removeDishFromMenu(selectedDishes[key].id);
+    this.getDish(id).then(data => {
+      for(key in selectedDishes){
+        if (selectedDishes[key].type == addDish.type) {
+          this.removeDishFromMenu(selectedDishes[key].id);
+        }
       }
-    }
-    selectedDishes.push(addDish);
-    this.notifyObservers();
+      selectedDishes.push(data);
+      this.notifyObservers();
+    }).catch(error => console.error("Error: ", error));
 	}
 
 	//Removes dish from menu
@@ -118,14 +112,14 @@ var DinnerModel = function() {
 	}
 
 	this.getAllDishes = function (type,filter) {
-    let url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/menuItems/search?query="+type+" "+filter;
-    return fetch(url,{ headers:{ 'X-Mashape-Key': API_KEY }}).then(response => response.json()).then(data => data.menuItems);
+    let url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?query="+type+" "+filter;
+    return fetch(url,{ headers:{ 'X-Mashape-Key': API_KEY }}).then(response => response.json()).then(data => data.results).catch(error => console.error("Error: ", error));
 	}
 
 	//function that returns a dish of specific ID
 	this.getDish = function (id) {
-    let url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/menuItems/"+id;
-    return fetch(url,{ headers:{ 'X-Mashape-Key': API_KEY }}).then(response => response.json());
+    let url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+id+"/information";
+    return fetch(url,{ headers:{ 'X-Mashape-Key': API_KEY }}).then(response => response.json()).catch(error => console.error("Error: ", error));
   }
 
   showDishes = this.getAllDishes('main course', '');

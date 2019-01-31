@@ -10,10 +10,10 @@ var FoodView = function (container, model) {
 	    var foodID = allDishes[key].id;
 	    var foodName = allDishes[key].title;
       var imgSrc;
-      if (!allDishes[key].image) {
+      if (!allDishes[key].imageUrls[0]) {
         imgSrc = "images/default.jpg";
       } else {
-	      imgSrc = allDishes[key].image;
+	      imgSrc = "https://spoonacular.com/recipeImages/"+allDishes[key].imageUrls[0];
       }
 	    var fill = `<div class="food-image" id="${foodID}">
 	                    <div>
@@ -34,7 +34,8 @@ var FoodView = function (container, model) {
       var allDishes = data;
       var items = getFoodItems(allDishes);
       container.find("#itemDiv").html(items);
-    })
+      refreshControllers();
+    }).catch(error => console.error("Error: ", error));
 
 	  // Fill rest for now.
 	  var html =`
@@ -87,8 +88,10 @@ var FoodView = function (container, model) {
      var showDishes = model.getShowDishes().then(data => {
        var items = getFoodItems(data);
        container.find("#itemDiv").html(items);
-     });
+       refreshControllers();
+     }).catch(error => console.error("Error: ", error));
      container.find("#itemDiv").html('<h1 class="fas fa-pizza-slice fa-spin text-center"></h1>');
+     refreshControllers();
 	}
 	model.addObserver(this.update);
 }

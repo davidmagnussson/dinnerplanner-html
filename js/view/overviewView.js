@@ -22,7 +22,7 @@ var OverviewView = function (container, model) {
 							 <div id="food-name">
 									 <p>${foodName}</p>
 							 </div>
-							 <p class="text-right">SEK ${foodCost}</p>
+							 <p class="text-right">USD ${foodCost}</p>
 					 </div>
 			 </div>
 			 <div class="d-md-none col-sm-4 col-2"></div>`;
@@ -60,7 +60,7 @@ var OverviewView = function (container, model) {
 		                        </div>
 		                        <div class="col-md-2">
 		                            <div style="height:28.2vh;" class="d-none d-md-block d-lg-block"></div>
-		                            Total: <br> <span>${totalMenuPrice}</span> SEK
+		                            Total: <br> <span>${totalMenuPrice}</span> USD
 		                        </div>
 		                    </div>
 		                    <hr>
