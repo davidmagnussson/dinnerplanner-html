@@ -9,15 +9,22 @@ var OverviewView = function (container, model) {
 	  var selectedDishes = model.getFullMenu();
 	  var foodItems = "";
 	  for (key in selectedDishes) {
-	     var imgSrc = selectedDishes[key].image;
-	     var foodName = selectedDishes[key].name;
-	     var foodCost = model.getMenuPrice(selectedDishes[key].id);
+
+	 			var imgSrc;
+				if (!selectedDishes[key].image) {
+					imgSrc = "images/default.jpg";
+				} else {
+					imgSrc = selectedDishes[key].image;
+				}
+
+	     var foodName = selectedDishes[key].title;
+	     var foodCost = model.getMenuPrice(selectedDishes[key].pricePerServing);
 	     var itemHtml = `<!-- ITEM # ${key} -->
 			 <div class="d-md-none col-sm-4 col-2"></div>
 			 <div class="col-md-4 col-sm-4 col-8">
 					 <div class="food-image">
 							 <div>
-									 <img src="images/${imgSrc}"/>
+									 <img src="${imgSrc}"/>
 							 </div>
 							 <div id="food-name">
 									 <p>${foodName}</p>

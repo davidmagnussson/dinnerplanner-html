@@ -115,8 +115,8 @@ button {
 }
 
 .food-image{
-    height: 22vh;
-    width: 20vh;
+    height: 25vh;
+    width: 22vh;
     border: 2px solid black;
     margin: 10px;
 }
@@ -127,10 +127,12 @@ button {
 }
 
 .food-image #food-name{
-    height: 6.5vh;
+    height: 9.5vh;
+    font-size: 0.9em;
     text-align: center;
     background: lightgrey;
     border-top: 2px solid black;
+    overflow:auto;
 }
 
 #food-container{
@@ -188,4 +190,16 @@ button {
 .fa-pizza-slice {
   font-size: 8em;
   color: #ff8533;
+  position: absolute;
+  top: 200px;
+  left: 200px;
+}
+
+#itemDiv {
+  height: 65vh;
+  overflow: auto;
+}
+
+.finalImage {
+  width: inherit;
 }

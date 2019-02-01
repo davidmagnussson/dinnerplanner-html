@@ -4,6 +4,13 @@ var DinnerModel = function() {
   const API_KEY = "3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767";//"ybMhpBljfzmsh5nwCSSVPWr2bLXwp1OhGnvjsn2NMyw55rKXKh";
   var observers=[];
 
+  this.errorMsg = function (error){
+    console.error("Error: ", error);
+    if (error) {
+      alert("Something went wrong");
+    }
+  }
+
   this.addObserver=function(observerFunc){ observers.push(observerFunc); }
 
   this.notifyObservers=function(details){
@@ -66,9 +73,7 @@ var DinnerModel = function() {
     for(key in selectedDishes){
       for (keyIn in selectedDishes[key].extendedIngredients) {
         var ingredient = selectedDishes[key].extendedIngredients[keyIn];
-        // if(!allIngredients.includes(ingredient)) {
-           allIngredients.push(ingredient);
-        // }
+        allIngredients.push(ingredient);
       }
     }
     return allIngredients;
@@ -93,13 +98,18 @@ var DinnerModel = function() {
 	this.addDishToMenu = function(id) {
     this.getDish(id).then(data => {
       for(key in selectedDishes){
-        if (selectedDishes[key].type == addDish.type) {
+        let selDishesTypes = selectedDishes[key].dishTypes;
+        let currDishTypes = data.dishTypes;
+        // Checks all dishTypes for this dish on the menu and sees if it matches
+        // any of the dishTypes of the dish we want to add!
+        let found = selDishesTypes.some(r=> currDishTypes.indexOf(r) >= 0);
+        if (found) {
           this.removeDishFromMenu(selectedDishes[key].id);
         }
       }
       selectedDishes.push(data);
       this.notifyObservers();
-    }).catch(error => console.error("Error: ", error));
+    }).catch(error => this.errorMsg(error));
 	}
 
 	//Removes dish from menu
@@ -113,13 +123,13 @@ var DinnerModel = function() {
 
 	this.getAllDishes = function (type,filter) {
     let url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?query="+type+" "+filter;
-    return fetch(url,{ headers:{ 'X-Mashape-Key': API_KEY }}).then(response => response.json()).then(data => data.results).catch(error => console.error("Error: ", error));
+    return fetch(url,{ headers:{ 'X-Mashape-Key': API_KEY }}).then(response => response.json()).then(data => data.results).catch(error => this.errorMsg(error));
 	}
 
 	//function that returns a dish of specific ID
 	this.getDish = function (id) {
     let url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+id+"/information";
-    return fetch(url,{ headers:{ 'X-Mashape-Key': API_KEY }}).then(response => response.json()).catch(error => console.error("Error: ", error));
+    return fetch(url,{ headers:{ 'X-Mashape-Key': API_KEY }}).then(response => response.json()).catch(error => this.errorMsg(error));
   }
 
   showDishes = this.getAllDishes('main course', '');

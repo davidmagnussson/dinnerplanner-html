@@ -116,7 +116,7 @@ var InfoFoodView = function (container, model, foodId) {
 
       this.container.html(html);
       refreshControllers();
-    });
+    }).catch(error => model.errorMsg(error));
 
     this.container.html(`<h1 class="fas fa-pizza-slice fa-spin text-center"></h1>`);
   }

@@ -33,9 +33,11 @@ var FoodView = function (container, model) {
 	  model.getShowDishes().then(data => {
       var allDishes = data;
       var items = getFoodItems(allDishes);
-      container.find("#itemDiv").html(items);
+      if (items) {
+        container.find("#itemDiv").html(items);
+      }
       refreshControllers();
-    }).catch(error => console.error("Error: ", error));
+    }).catch(error => model.errorMsg(error));
 
 	  // Fill rest for now.
 	  var html =`
@@ -70,7 +72,7 @@ var FoodView = function (container, model) {
     	        <div id="food-container" class="row"> <!--Innehåller alla maträtter-->
     	            <div class="d-md-none col-sm-4 col-3"></div>
     	            <div class="col-md-12 col-sm-4 col-8 row" id="itemDiv">
-    	             <h1 class="fas fa-pizza-slice fa-spin text-center"></h1>
+                    <h1 class="fas fa-pizza-slice fa-spin text-center"></h1>
     	            </div>
     	            <div class="d-md-none col-sm-2 col-1"></div>
     	        </div>
@@ -89,7 +91,7 @@ var FoodView = function (container, model) {
        var items = getFoodItems(data);
        container.find("#itemDiv").html(items);
        refreshControllers();
-     }).catch(error => console.error("Error: ", error));
+     }).catch(error => model.errorMsg(error));
      container.find("#itemDiv").html('<h1 class="fas fa-pizza-slice fa-spin text-center"></h1>');
      refreshControllers();
 	}

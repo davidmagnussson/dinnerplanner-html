@@ -8,16 +8,23 @@ var FinalView = function (container, model) {
 	  var selectedDishes = model.getFullMenu();
 	  var foodItems = "";
 	  for (key in selectedDishes) {
-	     var imgSrc = selectedDishes[key].image;
-	     var foodName = selectedDishes[key].name;
-	     var foodDesc = selectedDishes[key].description;
+
+			var imgSrc;
+			if (!selectedDishes[key].image) {
+				imgSrc = "images/default.jpg";
+			} else {
+				imgSrc = selectedDishes[key].image;
+			}
+
+	     var foodName = selectedDishes[key].title;
+	     var foodDesc = selectedDishes[key].instructions;
 	     var itemHtml = `<!-- ITEM # ${key} -->
 	          <div class="row itemDiv">
 
 	              <!-- ITEM # ${key} IMG -->
 	              <div class="col-sm-4 col-3 d-md-none"></div>
 	              <div class="col-md-3 col-sm-4 col-6 itemDiv">
-	                  <img src="images/${imgSrc}" class="blackBorder"/>
+	                  <img src="${imgSrc}" class="blackBorder finalImage"/>
 	              </div>
 	              <div class="col-sm-4 col-3 d-md-none"></div>
 
@@ -26,13 +33,13 @@ var FinalView = function (container, model) {
 	                  <!-- ITEM # ${key} NAME/DESC -->
 	                  <div class="col-md-4">
 	                      <h3>${foodName}</h3>
-	                      <p>${foodDesc}</p>
+	                      <p>No description found for this product.</p>
 	                  </div>
 
 	                  <!-- ITEM #${key} PREP -->
 	                  <div class="col-md-8">
 	                      <h5>Preparation</h5>
-	                      <p>Lorem</p>
+	                      <p>${foodDesc}</p>
 	                  </div>
 
 	              </div>
