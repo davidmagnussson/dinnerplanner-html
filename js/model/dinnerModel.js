@@ -1,13 +1,13 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
 
-  const API_KEY = "3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767";//"ybMhpBljfzmsh5nwCSSVPWr2bLXwp1OhGnvjsn2NMyw55rKXKh";
+  const API_KEY = "3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767"; //"3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767";//"ybMhpBljfzmsh5nwCSSVPWr2bLXwp1OhGnvjsn2NMyw55rKXKh";
   var observers=[];
 
   this.errorMsg = function (error){
     console.error("Error: ", error);
     if (error) {
-      alert("Something went wrong");
+      console.log("Something went wrong");
     }
   }
 
@@ -123,13 +123,13 @@ var DinnerModel = function() {
 
 	this.getAllDishes = function (type,filter) {
     let url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?query="+type+" "+filter;
-    return fetch(url,{ headers:{ 'X-Mashape-Key': API_KEY }}).then(response => response.json()).then(data => data.results).catch(error => this.errorMsg(error));
+    return fetch(url,{ headers:{ 'X-Mashape-Key': API_KEY }}).then(response => response.json()).then(data => data.results);
 	}
 
 	//function that returns a dish of specific ID
 	this.getDish = function (id) {
     let url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+id+"/information";
-    return fetch(url,{ headers:{ 'X-Mashape-Key': API_KEY }}).then(response => response.json()).catch(error => this.errorMsg(error));
+    return fetch(url,{ headers:{ 'X-Mashape-Key': API_KEY }}).then(response => response.json());
   }
 
   showDishes = this.getAllDishes('main course', '');

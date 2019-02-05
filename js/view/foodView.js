@@ -85,13 +85,21 @@ var FoodView = function (container, model) {
 
 	// Display the view when rendered.
   this.init();
+  container.find("#itemDiv").html("<h1>Couldn't load data.</h1>");
 
 	this.update=function(model, changeDetails){
      var showDishes = model.getShowDishes().then(data => {
        var items = getFoodItems(data);
-       container.find("#itemDiv").html(items);
+       if (!items || items == "") {
+         container.find("#itemDiv").html("<h1>No results found.</h1>");
+       } else {
+         container.find("#itemDiv").html(items);
+       }
        refreshControllers();
-     }).catch(error => model.errorMsg(error));
+     }).catch((error) => {
+       model.errorMsg(error);
+       container.find("#itemDiv").html("<h1>Couldn't load data.</h1>");
+     });
      container.find("#itemDiv").html('<h1 class="fas fa-pizza-slice fa-spin text-center"></h1>');
      refreshControllers();
 	}
