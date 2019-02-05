@@ -10,6 +10,8 @@ var DinnerModel = function() {
     }
   }
 
+  var observers = [];
+
   this.addObserver=function(observerFunc){ observers.push(observerFunc); }
 
   this.notifyObservers=function(details){
